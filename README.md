@@ -5,3 +5,6 @@ Google drive link:
 
 Trello link:
 - https://trello.com/b/LAjIfngc/software-engineering
+
+Website I used to start using Sprint:
+- https://spring.io/guides/gs/spring-boot/#initial
