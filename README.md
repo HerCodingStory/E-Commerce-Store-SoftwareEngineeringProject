@@ -16,3 +16,4 @@ What you need:
 - Spring
 - Java 8
 - Bootstrap
+- h2

@@ -15,6 +15,8 @@ public class Customer implements Serializable{
     private String username;
     private String password;
     private boolean enabled;
+    //private CreditCardInfo creditCardInfo;
+    private String creditCardInfo;
     //private BillingAddress billingAddress;
     private String billingAddress;
     //private ShippingAddress shippingAddress;

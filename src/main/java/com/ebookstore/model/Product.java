@@ -1,7 +1,17 @@
 package com.ebookstore.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+// adds this class to database. An instance of this corresponds to a row
+@Entity
 public class Product
 {
+    @Id // unique id
+    @GeneratedValue(strategy = GenerationType.AUTO) // generates products ID as they are added
+    private String productId;
     private String productName;
     private String productAuthor;
     private String productCategory;
@@ -11,6 +21,14 @@ public class Product
     private String productStatus;
     private int unitInStock;
     private String productPublisher;
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
 
     public String getProductAuthor() {
         return productAuthor;
