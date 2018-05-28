@@ -8,3 +8,10 @@ Trello link:
 
 Website I used to start using Sprint:
 - https://spring.io/guides/gs/spring-boot/#initial
+
+What you need:
+- Maven
+- IDE (I used IntelliJ IDEA Ultimate)
+- Tomcat
+- Spring
+- Java 8
