@@ -1,26 +1,39 @@
 package com.ebookstore.model;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by Le on 1/24/2016.
- */
-
-
+@Entity
 public class Customer implements Serializable{
 
+    @Id
+    @GeneratedValue
     private int customerId;
+
+    @NotEmpty(message = "The customer name must not be null.")
     private String customerName;
+
+    @NotEmpty (message = "The customer email must not be null.")
     private String customerEmail;
     private String customerPhone;
+
+    @NotEmpty (message = "The customer username must not be null.")
     private String username;
+
+    @NotEmpty (message = "The customer password must not be null.")
     private String password;
+
     private boolean enabled;
-    //private CreditCardInfo creditCardInfo;
-    private String creditCardInfo;
-    //private BillingAddress billingAddress;
-    private String billingAddress;
-    //private ShippingAddress shippingAddress;
-    private String shippingAddress;
+
+    @OneToOne
+    @JoinColumn(name="billingAddressId")
+    private BillingAddress billingAddress;
+
+    @OneToOne
+    @JoinColumn(name="shippingAddressId")
+    private ShippingAddress shippingAddress;
+
 
     public int getCustomerId() {
         return customerId;
@@ -78,19 +91,19 @@ public class Customer implements Serializable{
         this.enabled = enabled;
     }
 
-    public String getBillingAddress() {
+    public BillingAddress getBillingAddress() {
         return billingAddress;
     }
 
-    public void setBillingAddress(String billingAddress) {
+    public void setBillingAddress(BillingAddress billingAddress) {
         this.billingAddress = billingAddress;
     }
 
-    public String getShippingAddress() {
+    public ShippingAddress getShippingAddress() {
         return shippingAddress;
     }
 
-    public void setShippingAddress(String shippingAddress) {
+    public void setShippingAddress(ShippingAddress shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
 }
