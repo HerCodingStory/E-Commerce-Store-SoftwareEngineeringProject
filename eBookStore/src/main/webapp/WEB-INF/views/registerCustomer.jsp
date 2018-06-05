@@ -31,6 +31,12 @@
         </div>
 
         <div class="form-group">
+            <label for="username">Username</label><span style="color: #ff0000">${usernameMsg}</span><form:errors
+                path="username" cssStyle="color: #ff0000"/>
+            <form:input path="username" id="username" class="form-Control"/>
+        </div>
+
+        <div class="form-group">
             <label for="password">Password</label>
             <form:password path="password" id="password" class="form-Control"/>
         </div>

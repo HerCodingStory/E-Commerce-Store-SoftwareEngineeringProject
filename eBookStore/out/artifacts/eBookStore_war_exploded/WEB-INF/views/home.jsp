@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: crist
+  Users: crist
   Date: 5/28/2018
   Time: 4:10 AM
   To change this template use File | Settings | File Templates.
@@ -18,7 +18,7 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Mine&Craft BookShop</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
 
@@ -40,26 +40,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Mine&Craft BookShop</a>
+                    <a class="navbar-left" href="<c:url value="/"/>"><img src="https://preview.ibb.co/eDWnOT/Picture1.png" alt="Picture1" border="0" width="200" height="60"></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="<c:url value="/"/>">Home</a></li>
                         <li><a href="#account">Account</a></li>
                         <li><a href="<c:url value="/productList"/>">Products</a></li>
                         <li><a href="#contact">Contact</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a href="<c:url value="/admin" />">Admin</a></li>
+                        <li><a href="<c:url value="/register" />">Register</a></li>
                     </ul>
                 </div>
             </div>
@@ -80,32 +71,36 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img class="first-slide" src="http://images6.fanpop.com/image/photos/39600000/geeks-geekdom-39645835-2560-1600.jpg" alt="First slide">
+            <img class="first-slide" src="https://i.pinimg.com/originals/d7/70/5b/d7705b4b6c3dbf719523b248ef646a0f.jpg" alt="First slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Become a Miner!</h1>
                     <p>Shop all your favorites book, obtain discounts, get the news first! Just join now!</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign-up</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="<c:url value="/register" />" role="button">Sign-up</a></p>
                 </div>
             </div>
         </div>
         <div class="item">
-            <img class="second-slide" src="https://newevolutiondesigns.com/images/freebies/galaxy-wallpaper-36.jpg" alt="Second slide">
+            <img class="second-slide" src="http://i.imgur.com/I1rrW.png" alt="Second slide">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>Another example headline.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                    <h1>Find us in Social Media</h1>
+                    <p>
+                        <a href="#" class="fa fa-facebook"></a>
+                        <a href="#" class="fa fa-instagram"></a>
+                        <a href="#" class="fa fa-snapchat-ghost"></a>
+                        <a href="#" class="fa fa-twitter"></a>
+                    </p>
                 </div>
             </div>
         </div>
         <div class="item">
-            <img class="third-slide" src="http://longwallpapers.com/Desktop-Wallpaper/retro-game-wallpaper-high-quality-resolution-For-Desktop-Wallpaper.jpg" alt="Third slide">
+            <img class="third-slide" src="https://timedotcom.files.wordpress.com/2016/06/minecraft.jpg" alt="Third slide">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>One more for good measure.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                    <h1>Top Rated Books</h1>
+                    <p>Don't forget to look at the bestsellers books of the year!</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse Bestsellers</a></p>
                 </div>
             </div>
         </div>
@@ -130,29 +125,29 @@
     <!-- Three columns of text below the carousel -->
     <div class="row">
         <div class="col-lg-4">
-            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            <img class="img-circle" src="https://i.imgur.com/dpajR.jpg" alt="Generic placeholder image" width="140" height="140">
+            <h2>Events</h2>
+            <p>Check out all our amazing events!</p>
+            <p><a class="btn btn-default" href="#" role="button">View Calendar &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            <img class="img-circle" src="https://lh5.ggpht.com/77EvXtEUqn9KMJXzc7pVR5pQgws1XDRKAyd6M9XPBlI6J8rlvpeCcKCP2fEhLBOrFgK7=h1080" alt="Generic placeholder image" width="140" height="140">
+            <h2>Locations</h2>
+            <p>Check out all our locations!</p>
+            <p><a class="btn btn-default" href="#" role="button">Visit Us &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-            <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            <img class="img-circle" src="https://wallpapercave.com/wp/gEPOrzw.jpg" alt="Generic placeholder image" width="140" height="140">
+            <h2>Questions</h2>
+            <p>Ask us any questions, we will respond ASAP!</p>
+            <p><a class="btn btn-default" href="#" role="button">Contact Us &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 
     <!-- FOOTER -->
     <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        <p>&copy; 2018 Mine&Craft, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
     </footer>
 
 </div><!-- /.container -->
