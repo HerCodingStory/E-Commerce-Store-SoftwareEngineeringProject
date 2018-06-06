@@ -19,12 +19,11 @@
                     <th>Category</th>
                     <th>Condition</th>
                     <th>Price</th>
-                    <th></th>
                 </tr>
             </thead>
             <c:forEach items="${products}" var="product">
                 <tr>
-                    <td><img src="#" alt="image"/></td>
+                    <td><img src="https://ewedit.files.wordpress.com/2016/09/hpsorcstone.jpg" alt="image" style="width:50%"/></td>
                     <td>${product.productName}</td>
                     <td>${product.productAuthor}</td>
                     <td>${product.productCategory}</td>
