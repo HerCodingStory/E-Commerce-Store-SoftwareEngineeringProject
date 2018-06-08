@@ -14,5 +14,9 @@ public interface ProductDao
 
         void deleteProduct(String id);
 
+        List<Product> sortBooksByAuthor();
+
+        List<Product> getProductsByAuthor(String author);
+
 }
 

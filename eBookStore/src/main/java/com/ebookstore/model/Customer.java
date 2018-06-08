@@ -1,5 +1,6 @@
 package com.ebookstore.model;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -106,5 +107,7 @@ public class Customer implements Serializable{
     public void setShippingAddress(ShippingAddress shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
+
+
 }
 

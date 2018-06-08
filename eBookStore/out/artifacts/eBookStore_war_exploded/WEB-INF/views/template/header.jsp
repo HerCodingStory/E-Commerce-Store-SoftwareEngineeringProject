@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   Users: crist
@@ -52,8 +53,21 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="<c:url value="/productList"/>">Products</a></li>
+                        <li class="dropdown">
+                            <a href="<c:url value="/productList"/>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Sort By Title</a></li>
+                                <li><a href="<c:url value="/productList/sortAuthors"/>">Sort By Author</a></li>
+                                <li><a href="#">Sort By Price</a></li>
+                                <li><a href="#">Sort By Book Rating</a></li>
+                                <li><a href="#">Sort By Release Date</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#contact">Contact</a></li>
+                        <form:form commandName="search" action="${pageContext.request.contextPath}/productList/searchBook" method="post">
+                            <li><input type="text" name="search" placeholder="Search.."></li>
+                            <li><input id="image" type="submit" src="https://cdn4.iconfinder.com/data/icons/minecraft-gaming-game-pixel-pixel-art/514/art_pixel_minecraft_mine_craft_axe.png" width="26" height="26"></li>
+                        </form:form>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <c:if test="${pageContext.request.userPrincipal.name != null}">

@@ -50,5 +50,22 @@ public class HomeController
         return "viewProduct";
     }
 
+    @RequestMapping("/productList/sortAuthors")
+    public String BrowseProducts(Model model)
+    {
+        List<Product> products = productDao.sortBooksByAuthor();
+        model.addAttribute("products", products);
+
+        return "sortAuthors";
+    }
+
+    @RequestMapping("/productList/searchBook")
+    public String searchProducts(String author, Model model)
+    {
+        List<Product> products = productDao.getProductsByAuthor(author);
+        model.addAttribute("products", products);
+
+        return "searchBook";
+    }
 
 }

@@ -17,6 +17,7 @@ public class RegisterController
     @Autowired
     private CustomerService customerService;
 
+
     @RequestMapping("/register")
     public String registerCustomer(Model model)
     {
