@@ -24,12 +24,12 @@ public class CustomerDaoImpl implements CustomerDao
     public void addCustomer(Customer customer) {
         Session session  = sessionFactory.getCurrentSession();
 
-        customer.getBillingAddress().setCustomer(customer);
         customer.getShippingAddress().setCustomer(customer);
+        customer.getCreditCard().setCustomer(customer);
 
         session.saveOrUpdate(customer);
-        session.saveOrUpdate(customer.getBillingAddress());
         session.saveOrUpdate(customer.getShippingAddress());
+        session.saveOrUpdate(customer.getCreditCard());
 
         Users newUser = new Users();
         newUser.setUsername(customer.getUsername());

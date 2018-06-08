@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 // adds this class to database. An instance of this corresponds to a row
 @Entity
@@ -19,6 +20,7 @@ public class Product
     private double productPrice;
     private String productCondition;
     private String productStatus;
+    private Date productReleaseDate;
     private int unitInStock;
     private String productPublisher;
 
@@ -100,5 +102,13 @@ public class Product
 
     public void setProductPublisher(String productPublisher) {
         this.productPublisher = productPublisher;
+    }
+
+    public Date getProductReleaseDate() {
+        return productReleaseDate;
+    }
+
+    public void setProductReleaseDate(Date productReleaseDate) {
+        this.productReleaseDate = productReleaseDate;
     }
 }

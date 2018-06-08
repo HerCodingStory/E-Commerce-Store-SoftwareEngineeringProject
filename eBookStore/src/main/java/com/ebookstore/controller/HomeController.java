@@ -1,23 +1,15 @@
 package com.ebookstore.controller;
 
-import com.ebookstore.dao.CustomerDao;
 import com.ebookstore.dao.ProductDao;
-import com.ebookstore.model.Customer;
 import com.ebookstore.model.Product;
-import com.ebookstore.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.portlet.ModelAndView;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class HomeController
@@ -50,13 +42,51 @@ public class HomeController
         return "viewProduct";
     }
 
-    @RequestMapping("/productList/sortAuthors")
-    public String BrowseProducts(Model model)
+    @RequestMapping("/productList/sortedAuthors")
+    public String sortByAuthor(Model model)
     {
         List<Product> products = productDao.sortBooksByAuthor();
         model.addAttribute("products", products);
 
-        return "sortAuthors";
+        return "sortedBooks";
+    }
+
+    @RequestMapping("/productList/sortedTitle")
+    public String sortByTitle(Model model)
+    {
+        List<Product> products = productDao.sortBooksByTitle();
+        model.addAttribute("products", products);
+
+        return "sortedBooks";
+    }
+
+    @RequestMapping("/productList/sortedPrice")
+    public String sortByPrice(Model model)
+    {
+        List<Product> products = productDao.sortBooksByPrice();
+        model.addAttribute("products", products);
+
+        return "sortedBooks";
+    }
+
+    // Book Rating system is not implemented yet
+    /*
+    @RequestMapping("/productList/sortedBooks")
+    public String sortByBookRating(Model model)
+    {
+        List<Product> products = productDao.sortBooksByBookRating();
+        model.addAttribute("products", products);
+
+        return "sortBookRating";
+    }*/
+
+    @RequestMapping("/productList/sortedReleaseDate")
+    public String sortByReleaseDate(Model model)
+    {
+        List<Product> products = productDao.sortBooksByReleaseDate();
+        model.addAttribute("products", products);
+
+        return "sortedBooks";
     }
 
     @RequestMapping("/productList/searchBook")

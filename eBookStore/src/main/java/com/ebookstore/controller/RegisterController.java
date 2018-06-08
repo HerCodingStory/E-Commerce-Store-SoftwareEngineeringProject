@@ -1,6 +1,6 @@
 package com.ebookstore.controller;
 
-import com.ebookstore.model.BillingAddress;
+import com.ebookstore.model.CreditCard;
 import com.ebookstore.model.Customer;
 import com.ebookstore.model.ShippingAddress;
 import com.ebookstore.service.CustomerService;
@@ -22,10 +22,10 @@ public class RegisterController
     public String registerCustomer(Model model)
     {
         Customer customer = new Customer();
-        BillingAddress billingAddress = new BillingAddress();
         ShippingAddress shippingAddress = new ShippingAddress();
-        customer.setBillingAddress(billingAddress);
+        CreditCard creditCard = new CreditCard();
         customer.setShippingAddress(shippingAddress);
+        customer.setCreditCard(creditCard);
 
         model.addAttribute("customer", customer);
 

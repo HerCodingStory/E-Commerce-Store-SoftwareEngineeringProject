@@ -28,12 +28,12 @@ public class Customer implements Serializable{
     private boolean enabled;
 
     @OneToOne
-    @JoinColumn(name="billingAddressId")
-    private BillingAddress billingAddress;
-
-    @OneToOne
     @JoinColumn(name="shippingAddressId")
     private ShippingAddress shippingAddress;
+
+    @OneToOne
+    @JoinColumn(name="creditCardId")
+    private CreditCard creditCard;
 
 
     public int getCustomerId() {
@@ -92,14 +92,6 @@ public class Customer implements Serializable{
         this.enabled = enabled;
     }
 
-    public BillingAddress getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(BillingAddress billingAddress) {
-        this.billingAddress = billingAddress;
-    }
-
     public ShippingAddress getShippingAddress() {
         return shippingAddress;
     }
@@ -108,6 +100,12 @@ public class Customer implements Serializable{
         this.shippingAddress = shippingAddress;
     }
 
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
 
+    public void setCreditCard(CreditCard creditcard) {
+        this.creditCard = creditcard;
+    }
 }
 
