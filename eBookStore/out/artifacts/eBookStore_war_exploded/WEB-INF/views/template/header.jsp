@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   Users: crist
@@ -9,6 +10,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <style>
+        input[name="search"] {
+            width: 130px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('http://www.stickaz.com/1899-2634-square/minecraft-diamond-pickaxe.png');
+            background-size: 28px 28px;
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[name="search"]:focus {
+            width: 100%;
+        }
+    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,12 +70,28 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-left" href="<c:url value="/"/>"><img src="https://preview.ibb.co/eDWnOT/Picture1.png" alt="Picture1" border="0" width="200" height="60"></a>
+                    <a class="navbar-left" href="<c:url value="/"/>"><img src="https://preview.ibb.co/itUrq8/Picture1.png" alt="Picture1" border="0" width="200" height="50"></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="<c:url value="/productList"/>">Products</a></li>
+                        <li class="dropdown">
+                            <a href="<c:url value="/productList"/>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<c:url value="/productList/sortedTitle"/>">Sort By Title</a></li>
+                                <li><a href="<c:url value="/productList/sortedAuthors"/>">Sort By Author</a></li>
+                                <li><a href="<c:url value="/productList/sortedPrice"/>">Sort By Price</a></li>
+                                <li><a href="#">Sort By Book Rating</a></li>
+                                <li><a href="<c:url value="/productList/sortedReleaseDate"/>">Sort By Release Date</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#contact">Contact</a></li>
+                        <li>
+                        <!--<form:form commandName="search" action="${pageContext.request.contextPath}/productList/searchBook" method="post"> -->
+                            <form>
+                                <input type="text" name="search" placeholder="Search..">
+                            </form>
+                        </li>
+                        <!--</form:form> -->
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <c:if test="${pageContext.request.userPrincipal.name != null}">

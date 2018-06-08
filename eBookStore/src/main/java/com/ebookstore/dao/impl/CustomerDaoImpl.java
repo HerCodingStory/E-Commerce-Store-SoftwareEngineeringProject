@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,12 +24,12 @@ public class CustomerDaoImpl implements CustomerDao
     public void addCustomer(Customer customer) {
         Session session  = sessionFactory.getCurrentSession();
 
-        customer.getBillingAddress().setCustomer(customer);
         customer.getShippingAddress().setCustomer(customer);
+        customer.getCreditCard().setCustomer(customer);
 
         session.saveOrUpdate(customer);
-        session.saveOrUpdate(customer.getBillingAddress());
         session.saveOrUpdate(customer.getShippingAddress());
+        session.saveOrUpdate(customer.getCreditCard());
 
         Users newUser = new Users();
         newUser.setUsername(customer.getUsername());
@@ -68,4 +69,13 @@ public class CustomerDaoImpl implements CustomerDao
 
         return (Customer) query.uniqueResult();
     }
+
+    public void deleteCustomer(int id)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(getCustomerById(id));
+        session.flush();
+    }
+
+
 }

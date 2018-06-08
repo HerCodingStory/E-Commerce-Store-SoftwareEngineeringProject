@@ -1,5 +1,7 @@
 package com.ebookstore.model;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -54,4 +56,6 @@ public class Users
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
+
+
 }

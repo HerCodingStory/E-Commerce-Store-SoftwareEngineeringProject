@@ -27,13 +27,12 @@
                         <strong>Email:</strong> ${customer.customerEmail}
                     </p>
                     <p>
-                        <strong>Billing Address:</strong>
+                        <strong>Credit Card Info:</strong>
                         <ul style="list-style-type:none">
-                            <li>Street Name: ${customer.billingAddress.streetName}</li>
-                            <li>Apt: ${customer.billingAddress.apartmentNumber}</li>
-                            <li>City: ${customer.billingAddress.city}</li>
-                            <li>State: ${customer.billingAddress.state}</li>
-                            <li>Zip Code: ${customer.billingAddress.zipCode}</li>
+                            <li>Credit Card Number: ${customer.creditCard.creditCardNumber}</li>
+                            <li>Name on Credit Card: ${customer.creditCard.creditCardName}</li>
+                            <li>Expiration Month: ${customer.creditCard.expirationMonth}</li>
+                            <li>Expiration Year: ${customer.creditCard.expirationYear}</li>
                         </ul>
                     </p>
                     <p>

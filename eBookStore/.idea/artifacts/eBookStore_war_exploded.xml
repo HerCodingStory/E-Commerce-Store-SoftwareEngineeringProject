@@ -55,6 +55,7 @@
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:3.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:3.2.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.mindrot:jbcrypt:0.3m" />
         </element>
       </element>
     </root>
