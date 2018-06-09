@@ -1,13 +1,20 @@
 package com.ebookstore.controller;
 
 import com.ebookstore.dao.ProductDao;
+import com.ebookstore.dao.CustomerDao;
+import com.ebookstore.model.CreditCard;
+import com.ebookstore.model.Customer;
 import com.ebookstore.model.Product;
+import com.ebookstore.model.ShippingAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 
@@ -16,6 +23,8 @@ public class HomeController
 {
     @Autowired
     private ProductDao productDao;
+    @Autowired
+    private CustomerDao customerDao;
 
     @RequestMapping("/")
     public String home()
@@ -98,4 +107,23 @@ public class HomeController
         return "searchBook";
     }
 
+    @RequestMapping("/account/editCustomer/{id}")
+    public String editAccount(@PathVariable("id") int id, Model model)
+    {
+        Customer customer = customerDao.getCustomerById(id);
+        ShippingAddress shipAdd = customer.getShippingAddress();
+        CreditCard cCard = customer.getCreditCard();
+
+        model.addAttribute(customer);
+
+        return "editCustomer";
+    }
+
+    @RequestMapping(value = "/account/editCustomer", method = RequestMethod.POST)
+    public String editAccount(@ModelAttribute("customer") Customer customer, Model model, HttpServletRequest request)
+    {
+        customerDao.editCustomer(customer);
+
+        return ("redirect:/account/viewCustomer/" + customer.getCustomerId());
+    }
 }

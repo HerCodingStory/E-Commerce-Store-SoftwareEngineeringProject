@@ -33,7 +33,7 @@ public class AccountController
         return "viewCustomer";
 
     }
-    /*
+
     @RequestMapping
     public String getUserName(@AuthenticationPrincipal User activeUser)
     {
@@ -44,13 +44,13 @@ public class AccountController
     }
 
 
-
+    /*
     @RequestMapping("/{customerId}")
     public String getCustomerRedirect(@PathVariable (value = "customerId") int customerId, Model model)
     {
         model.addAttribute("customerId", customerId);
 
-        return "customer";
+        return "viewCustomer";
     }*/
 
 }

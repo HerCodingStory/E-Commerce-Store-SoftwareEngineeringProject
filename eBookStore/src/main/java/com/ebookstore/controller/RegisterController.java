@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 public class RegisterController
 {
@@ -40,5 +42,16 @@ public class RegisterController
 
         return "registerCustomerSuccess";
     }
+/*
+    @RequestMapping("/editAccount")
+    public String editCustomer(@ModelAttribute("customer") Customer customer, Model model)
+    {
+        List<>
+        customer.setShippingAddress(shippingAddress);
+        customer.setCreditCard(creditCard);
 
+        model.addAttribute("customer", customer);
+
+        return "registerCustomer";
+    }*/
 }
