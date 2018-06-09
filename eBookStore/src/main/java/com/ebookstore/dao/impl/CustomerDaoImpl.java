@@ -1,9 +1,7 @@
 package com.ebookstore.dao.impl;
 
 import com.ebookstore.dao.CustomerDao;
-import com.ebookstore.model.Authorities;
-import com.ebookstore.model.Customer;
-import com.ebookstore.model.Users;
+import com.ebookstore.model.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -49,6 +47,23 @@ public class CustomerDaoImpl implements CustomerDao
         session.flush();
     }
 
+    public void editCustomer(Customer customer) {
+        Session session  = sessionFactory.getCurrentSession();
+
+        Users user = (Users) session.get(Users.class, customer.getCustomerId());
+        Authorities auth = (Authorities) session.get(Authorities.class, customer.getCustomerId());
+        //ShippingAddress shipAdd = (ShippingAddress) session.get(ShippingAddress.class, customer.getCustomerId());
+        //CreditCard cCard = (CreditCard) session.get(CreditCard.class, customer.getCustomerId());
+
+        session.saveOrUpdate(customer);
+        session.saveOrUpdate(customer.getCreditCard());
+        session.saveOrUpdate(customer.getShippingAddress());
+        auth.setUsername(customer.getUsername());
+        user.setUsername(customer.getUsername());
+        user.setPassword(customer.getPassword());
+        session.flush();
+    }
+
     public Customer getCustomerById(int customerId) {
         Session session = sessionFactory.getCurrentSession();
         return (Customer) session.get(Customer.class, customerId);
@@ -76,6 +91,4 @@ public class CustomerDaoImpl implements CustomerDao
         session.delete(getCustomerById(id));
         session.flush();
     }
-
-
 }
