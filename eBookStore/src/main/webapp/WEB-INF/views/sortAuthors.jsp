@@ -5,17 +5,9 @@
 <div class="container-wrapper">
     <div class="container">
         <div class="page-header">
-            <h1>All Products</h1>
+            <h1>Sorted By Authors</h1>
 
-            <p class="lead">This is what we have:</p>
-
-            <div class="btn-group">
-                <button><a href="<c:url value="/productList/sortedTitle" />">Sort By Title</a></button>
-                <button><a href="<c:url value="/productList/sortedAuthors" />">Sort By Author</a></button>
-                <button><a href="<c:url value="/productList/sortedPrice" />">Sort By Price</a></button>
-                <button><a href="$">Sort By Book Rating</a></button>
-                <button><a href="<c:url value="/productList/sortedReleaseDate" />">Sort By Release Date</a></button>
-            </div>
+            <p class="lead">Look for your favorite Author</p>
         </div>
 
         <table class="table table-striped table-hover">
