@@ -20,7 +20,7 @@ public interface ProductDao
 
         List<Product> sortBooksByPrice();
 
-        //List<Product> sortBooksByBookRating();
+        // List<Product> sortBooksByBookRating();
 
         List<Product> sortBooksByReleaseDate();
 
