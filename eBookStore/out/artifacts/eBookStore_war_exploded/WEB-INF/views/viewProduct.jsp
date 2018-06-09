@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <img src="https://ewedit.files.wordpress.com/2016/09/hpsorcstone.jpg" alt="image" style="width:50%; height:300px;" />
+                    <img src="<c:url value="/resources/images/${product.productId}.png" /> " alt="image" style="width:75%"/>
                 </div>
 
                 <div class="col-md-5">

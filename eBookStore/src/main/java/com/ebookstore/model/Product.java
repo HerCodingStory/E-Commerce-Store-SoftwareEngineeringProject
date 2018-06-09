@@ -1,9 +1,8 @@
 package com.ebookstore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.*;
 import java.util.Date;
 
 // adds this class to database. An instance of this corresponds to a row
@@ -23,6 +22,9 @@ public class Product
     private Date productReleaseDate;
     private int unitInStock;
     private String productPublisher;
+
+    @Transient
+    private MultipartFile productImage;
 
     public String getProductId() {
         return productId;
@@ -110,5 +112,13 @@ public class Product
 
     public void setProductReleaseDate(Date productReleaseDate) {
         this.productReleaseDate = productReleaseDate;
+    }
+
+    public MultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
     }
 }

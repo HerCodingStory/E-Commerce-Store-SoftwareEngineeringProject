@@ -14,5 +14,6 @@ public interface CustomerDao
 
     Customer getCustomerByUsername(String username);
 
+    void deleteCustomer(int id);
 
 }

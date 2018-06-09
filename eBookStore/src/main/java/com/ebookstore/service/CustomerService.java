@@ -14,5 +14,4 @@ public interface CustomerService
 
     Customer getCustomerByUsername(String username);
 
-
 }

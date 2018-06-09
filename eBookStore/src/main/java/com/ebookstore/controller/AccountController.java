@@ -43,7 +43,7 @@ public class AccountController
         return "redirect:/account/viewCustomer/"+customerId;
     }
 
-
+    /*
 
     @RequestMapping("/{customerId}")
     public String getCustomerRedirect(@PathVariable (value = "customerId") int customerId, Model model)
