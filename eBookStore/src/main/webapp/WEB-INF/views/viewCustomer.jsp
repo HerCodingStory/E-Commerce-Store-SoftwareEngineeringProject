@@ -13,12 +13,15 @@
             <div class="row">
                 <div class="col-md-5">
                     <img src="https://images.halloweencostumes.com/products/41889/1-1/minecraft-steve-vacuform-mask.jpg" alt="image" style="width:50%; height:300px;" />
+                    <p>
+                        <a href="<c:url value="/account/editCustomer" />">Edit Profile</a>
+                    </p>
                 </div>
 
                 <div class="col-md-5">
                     <h2>${customer.customerName}</h2>
                     <p>
-                        <strong>Username:</strong> ${customer.username}
+                        <strong>Username:</strong>${customer.username}
                     </p>
                     <p>
                         <strong>Phone Number:</strong> ${customer.customerPhone}
@@ -43,7 +46,7 @@
                             <li>City: ${customer.shippingAddress.city}</li>
                             <li>State: ${customer.shippingAddress.state}</li>
                             <li>Zip Code: ${customer.shippingAddress.zipCode}</li>
-                        </ul>
+                        </u>
                     </p>
 
                 </div>
