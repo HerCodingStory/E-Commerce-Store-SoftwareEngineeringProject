@@ -23,7 +23,7 @@ public class AccountController
     @Autowired
     private CustomerService customerService;
 
-    @RequestMapping("/account/viewCustomer/{customerId}")
+    /*@RequestMapping("/account/viewCustomer/{customerId}")
     public String getUserAccount(@PathVariable int customerId, Model model) throws IOException
     {
         Customer customer = customerService.getCustomerById(customerId);
@@ -32,19 +32,20 @@ public class AccountController
 
         return "viewCustomer";
 
-    }
-    /*
-    @RequestMapping
-    public String getUserName(@AuthenticationPrincipal User activeUser)
+    }*/
+
+    @RequestMapping("/account/viewCustomer/")
+    public String getUserName(@AuthenticationPrincipal User activeUser,  Model model)
     {
         Customer customer = customerService.getCustomerByUsername(activeUser.getUsername());
         int customerId = customer.getCustomerId();
+        model.addAttribute(customer);
 
-        return "redirect:/account/viewCustomer/"+customerId;
+        return "viewCustomer";//"redirect:/account/viewCustomer/"+customerId;
     }
 
-    /*
 
+        /*
     @RequestMapping("/{customerId}")
     public String getCustomerRedirect(@PathVariable (value = "customerId") int customerId, Model model)
     {
