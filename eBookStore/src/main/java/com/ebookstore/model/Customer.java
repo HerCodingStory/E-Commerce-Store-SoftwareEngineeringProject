@@ -35,6 +35,13 @@ public class Customer implements Serializable{
     @JoinColumn(name="creditCardId")
     private CreditCard creditCard;
 
+    @OneToOne
+    @JoinColumn(name="ratingId")
+    private Rating rating;
+
+    @OneToOne
+    @JoinColumn(name="commentId")
+    private Comment comment;
 
     public int getCustomerId() {
         return customerId;

@@ -1,18 +1,26 @@
 package com.ebookstore.model;
 
+//import org.hibernate.search.annotations.Field;
+import org.springframework.stereotype.Indexed;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 // adds this class to database. An instance of this corresponds to a row
+@Indexed
 @Entity
 public class Product
 {
     @Id // unique id
     @GeneratedValue(strategy = GenerationType.AUTO) // generates products ID as they are added
     private String productId;
+    //@Field
     private String productName;
+    //@Field
     private String productAuthor;
     private String productCategory;
     private String productDescription;
@@ -22,6 +30,14 @@ public class Product
     private Date productReleaseDate;
     private int unitInStock;
     private String productPublisher;
+
+    @OneToOne
+    @JoinColumn(name="ratingId")
+    private Rating rating;
+
+    @OneToOne
+    @JoinColumn(name="commentId")
+    private Comment comment;
 
     @Transient
     private MultipartFile productImage;
@@ -106,8 +122,10 @@ public class Product
         this.productPublisher = productPublisher;
     }
 
-    public Date getProductReleaseDate() {
-        return productReleaseDate;
+    public String getProductReleaseDate() {
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+
+        return sd.format(productReleaseDate);
     }
 
     public void setProductReleaseDate(Date productReleaseDate) {
@@ -120,5 +138,21 @@ public class Product
 
     public void setProductImage(MultipartFile productImage) {
         this.productImage = productImage;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 }

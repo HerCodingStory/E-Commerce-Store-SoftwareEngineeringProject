@@ -24,7 +24,7 @@ public interface ProductDao
 
         List<Product> sortBooksByReleaseDate();
 
-        List<Product> getProductsByAuthor(String author);
+
 
 
 }

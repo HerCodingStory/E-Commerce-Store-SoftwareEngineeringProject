@@ -19,6 +19,9 @@
                     <h3>${product.productName}</h3>
                     <p>${product.productDescription}</p>
                     <p>
+                        <strong>Author</strong> : <a target="_blank" href="https://en.wikipedia.org/wiki/${product.productAuthor}">${product.productAuthor}</a>
+                    </p>
+                    <p>
                         <strong>Publisher</strong> : ${product.productPublisher}
                     </p>
                     <p>
@@ -32,6 +35,17 @@
                     </p>
                     <p>
                         <strong>Release Date</strong> : ${product.productReleaseDate}
+                    </p>
+                    <p>
+                        <strong>Rating</strong> :
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </p>
+                    <p>
+                        <strong>Comments</strong> : ${product.comment}
                     </p>
                 </div>
 

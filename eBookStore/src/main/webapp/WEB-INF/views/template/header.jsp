@@ -40,6 +40,7 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Mine&Craft BookShop</title>
+    <link rel="icon" href="https://png.icons8.com/color/180/minecraft-sword.png">
 
     <!-- Angular JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js" > </script>
@@ -53,7 +54,7 @@
     <!-- Main CSS -->
     <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <!-- NAVBAR
 ================================================== -->
@@ -86,7 +87,7 @@
                         </li>
                         <li><a href="#contact">Contact</a></li>
                         <li>
-                        <!--<form:form commandName="search" action="${pageContext.request.contextPath}/productList/searchBook" method="post"> -->
+                        <!--<form:form action="${pageContext.request.contextPath}/searchBook" method="post"> -->
                             <form>
                                 <input type="text" name="search" placeholder="Search..">
                             </form>

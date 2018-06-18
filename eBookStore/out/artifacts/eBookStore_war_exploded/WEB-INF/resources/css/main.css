@@ -20,6 +20,10 @@
     text-align: center;
 }
 
+.checked {
+    color: orange;
+}
+
 .table td {
     text-align: center;
     background: whitesmoke;
