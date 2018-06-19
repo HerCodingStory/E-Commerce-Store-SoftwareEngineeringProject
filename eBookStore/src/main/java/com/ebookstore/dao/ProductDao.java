@@ -20,6 +20,10 @@ public interface ProductDao
 
         List<Product> sortBooksByPrice();
 
+        List<Product> getAllProductsByAuthor(String author);
+
+        List<Product> searchProduct(String searchText);
+
         //List<Product> sortBooksByBookRating();
 
         List<Product> sortBooksByReleaseDate();

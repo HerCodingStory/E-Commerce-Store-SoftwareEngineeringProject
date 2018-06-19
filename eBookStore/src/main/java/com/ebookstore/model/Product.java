@@ -1,13 +1,9 @@
 package com.ebookstore.model;
 
-//import org.hibernate.search.annotations.Field;
 import org.springframework.stereotype.Indexed;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.persistence.*;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 // adds this class to database. An instance of this corresponds to a row
@@ -18,9 +14,7 @@ public class Product
     @Id // unique id
     @GeneratedValue(strategy = GenerationType.AUTO) // generates products ID as they are added
     private String productId;
-    //@Field
     private String productName;
-    //@Field
     private String productAuthor;
     private String productCategory;
     private String productDescription;

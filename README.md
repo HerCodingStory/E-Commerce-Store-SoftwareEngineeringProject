@@ -17,3 +17,5 @@ What you need:
 - Java 8
 - Bootstrap
 - h2
+- jQuery
+- Angular

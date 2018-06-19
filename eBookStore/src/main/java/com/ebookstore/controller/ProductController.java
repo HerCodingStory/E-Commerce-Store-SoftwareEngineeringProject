@@ -2,37 +2,18 @@ package com.ebookstore.controller;
 
 import com.ebookstore.dao.ProductDao;
 import com.ebookstore.model.Product;
-import com.ebookstore.service.SearchService;
-//import com.ebookstore.service.impl.SearchServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
-
 
 @Controller
 public class ProductController
 {
     @Autowired
     private ProductDao productDao;
-
-    //@Autowired
-   // private SearchServiceImpl searchService;
-
-    @RequestMapping("/productList")
-    public String getProducts(Model model)
-    {
-        List<Product> products = productDao.getAllProducts();
-        model.addAttribute("products", products);
-
-        return "productList";
-    }
 
     @RequestMapping("/productList/viewProduct/{productId}")
     public String viewProduct(@PathVariable String productId, Model model) throws IOException
@@ -91,23 +72,5 @@ public class ProductController
         return "sortedBooks";
     }
 
-    /*
-    @RequestMapping("/productList/searchBook")
-    public String searchProducts(String author, Model model)
-    {
-        List<Product> products = productDao.getProductsByAuthor(author);
-        model.addAttribute("products", products);
 
-        return "searchBook";
-    }*/
-
-    //@RequestMapping(value = "/", method = RequestMethod.GET)
-    /*@RequestMapping("/searchBook")
-    public String search(@RequestParam(value = "search", required = false) String searchText, Model model)
-    {
-        List<Product> searchResults = searchService.fuzzySearch(searchText);
-
-        model.addAttribute("search", searchResults);
-        return "searchBook";
-    }*/
 }

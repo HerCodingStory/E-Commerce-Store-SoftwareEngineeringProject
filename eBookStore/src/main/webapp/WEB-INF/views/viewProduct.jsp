@@ -31,7 +31,7 @@
                         <strong>Condition</strong> : ${product.productCondition}
                     </p>
                     <p>
-                        <strong>Price</strong> : ${product.productPrice}
+                        <strong>Price</strong> : $${product.productPrice}
                     </p>
                     <p>
                         <strong>Release Date</strong> : ${product.productReleaseDate}

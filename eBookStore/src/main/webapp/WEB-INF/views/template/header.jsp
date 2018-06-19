@@ -10,27 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <style>
-        input[name="search"] {
-            width: 130px;
-            box-sizing: border-box;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            background-color: white;
-            background-image: url('http://www.stickaz.com/1899-2634-square/minecraft-diamond-pickaxe.png');
-            background-size: 28px 28px;
-            background-position: 10px 10px;
-            background-repeat: no-repeat;
-            padding: 12px 20px 12px 40px;
-            -webkit-transition: width 0.4s ease-in-out;
-            transition: width 0.4s ease-in-out;
-        }
 
-        input[name="search"]:focus {
-            width: 100%;
-        }
-    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,8 +25,15 @@
     <!-- Angular JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js" > </script>
 
+    <%--Jquery--%>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <%--Data Table--%>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Carousel CSS -->
     <link href="<c:url value="/resources/css/carousel.css" />" rel="stylesheet">
@@ -54,11 +41,14 @@
     <!-- Main CSS -->
     <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
+
+
 </head>
 <!-- NAVBAR
 ================================================== -->
 <body>
+
 <div class="navbar-wrapper">
     <div class="container">
 
@@ -86,13 +76,6 @@
                             </ul>
                         </li>
                         <li><a href="#contact">Contact</a></li>
-                        <li>
-                        <!--<form:form action="${pageContext.request.contextPath}/searchBook" method="post"> -->
-                            <form>
-                                <input type="text" name="search" placeholder="Search..">
-                            </form>
-                        </li>
-                        <!--</form:form> -->
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -113,6 +96,5 @@
                 </div>
             </div>
         </nav>
-
     </div>
 </div>
