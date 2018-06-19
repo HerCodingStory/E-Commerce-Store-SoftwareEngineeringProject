@@ -6,8 +6,12 @@ Google drive link:
 Trello link:
 - https://trello.com/b/LAjIfngc/software-engineering
 
-Website I used to start using Sprint:
+Websites I used to start learning Sprint:
 - https://spring.io/guides/gs/spring-boot/#initial
+- https://www.udemy.com/building-an-e-commerce-store-using-java-spring-framework/learn/v4/overview
+
+Website pictures:
+![alt text](https://github.com/cristyevr94/SoftwareEng/blob/cristinaV/WebsiteFront.png)
 
 What you need:
 - Maven
