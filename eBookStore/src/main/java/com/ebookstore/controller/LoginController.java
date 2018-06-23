@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginController
 {
+    // This method returns messages depending on the case
     @RequestMapping("/login")
     public String login(@RequestParam(value="error", required = false) String error,
                         @RequestParam(value="logout", required = false) String logout, Model model)

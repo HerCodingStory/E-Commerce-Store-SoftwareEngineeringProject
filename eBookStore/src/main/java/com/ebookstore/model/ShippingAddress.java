@@ -1,10 +1,11 @@
 package com.ebookstore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 @Entity
 public class ShippingAddress implements Serializable
@@ -12,14 +13,25 @@ public class ShippingAddress implements Serializable
     @Id
     @GeneratedValue
     private int shippingAddressId;
+
+
     private String streetName;
     private String apartmentNumber;
+
+
     private String city;
+
+
     private String state;
+
+
     private String country;
+
+
     private String zipCode;
 
     @OneToOne
+    @JoinColumn(name="customerId")
     private Customer customer;
 
     public int getShippingAddressId() {

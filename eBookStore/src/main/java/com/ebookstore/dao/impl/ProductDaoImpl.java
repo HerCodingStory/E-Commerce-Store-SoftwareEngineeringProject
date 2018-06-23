@@ -25,7 +25,7 @@ public class ProductDaoImpl implements ProductDao
         session.flush();
     }
 
-    public Product getProductById(String id)
+    public Product getProductById(int id)
     {
         Session session = sessionFactory.getCurrentSession();
         Product product = (Product) session.get(Product.class, id);
@@ -34,14 +34,19 @@ public class ProductDaoImpl implements ProductDao
         return product;
     }
 
-    public List<Product> getAllProducts()
-    {
+    public void editProduct (Product product) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(product);
+        session.flush();
+    }
+
+    public List<Product> getProductList() {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Product");
-        List<Product> products = ((Query) query).list();
+        List<Product> productList = query.list();
         session.flush();
 
-        return products;
+        return productList;
     }
 
     public List<Product> getAllProductsByAuthor(String author)
@@ -54,10 +59,9 @@ public class ProductDaoImpl implements ProductDao
         return products;
     }
 
-    public void deleteProduct(String id)
-    {
+    public void deleteProduct (Product product) {
         Session session = sessionFactory.getCurrentSession();
-        session.delete(getProductById(id));
+        session.delete(product);
         session.flush();
     }
 

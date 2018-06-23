@@ -114,5 +114,21 @@ public class Customer implements Serializable{
     public void setCreditCard(CreditCard creditcard) {
         this.creditCard = creditcard;
     }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
 }
 

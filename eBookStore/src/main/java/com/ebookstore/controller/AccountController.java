@@ -15,6 +15,7 @@ public class AccountController
     @Autowired
     private CustomerService customerService;
 
+    // This methods returns the profile page of the login user
     @RequestMapping("/account/viewCustomer/")
     public String getUserName(@AuthenticationPrincipal User activeUser,  Model model)
     {

@@ -13,7 +13,7 @@ public class Product
 {
     @Id // unique id
     @GeneratedValue(strategy = GenerationType.AUTO) // generates products ID as they are added
-    private String productId;
+    private int productId;
     private String productName;
     private String productAuthor;
     private String productCategory;
@@ -36,11 +36,11 @@ public class Product
     @Transient
     private MultipartFile productImage;
 
-    public String getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
