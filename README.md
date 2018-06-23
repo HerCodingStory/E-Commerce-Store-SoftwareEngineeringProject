@@ -6,8 +6,11 @@ Google drive link:
 Trello link:
 - https://trello.com/b/LAjIfngc/software-engineering
 
-Website I used to start using Sprint:
+Websites I used to start learning Sprint:
 - https://spring.io/guides/gs/spring-boot/#initial
+
+Website pictures:
+![alt text](https://github.com/cristyevr94/SoftwareEng/blob/CristinaV/WebsiteFront.PNG)
 
 What you need:
 - Maven
@@ -17,3 +20,5 @@ What you need:
 - Java 8
 - Bootstrap
 - h2
+- jQuery
+- Angular

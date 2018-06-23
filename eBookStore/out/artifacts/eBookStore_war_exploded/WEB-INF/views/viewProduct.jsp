@@ -12,12 +12,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <img src="https://ewedit.files.wordpress.com/2016/09/hpsorcstone.jpg" alt="image" style="width:50%; height:300px;" />
+                    <img src="<c:url value="/resources/images/${product.productId}.png" /> " alt="image" style="width:75%"/>
                 </div>
 
                 <div class="col-md-5">
                     <h3>${product.productName}</h3>
                     <p>${product.productDescription}</p>
+                    <p>
+                        <strong>Author</strong> : <a target="_blank" href="https://en.wikipedia.org/wiki/${product.productAuthor}">${product.productAuthor}</a>
+                    </p>
                     <p>
                         <strong>Publisher</strong> : ${product.productPublisher}
                     </p>
@@ -28,10 +31,21 @@
                         <strong>Condition</strong> : ${product.productCondition}
                     </p>
                     <p>
-                        <strong>Price</strong> : ${product.productPrice}
+                        <strong>Price</strong> : $${product.productPrice}
                     </p>
                     <p>
                         <strong>Release Date</strong> : ${product.productReleaseDate}
+                    </p>
+                    <p>
+                        <strong>Rating</strong> :
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </p>
+                    <p>
+                        <strong>Comments</strong> : ${product.comment}
                     </p>
                 </div>
 

@@ -33,7 +33,7 @@ public class RegisterController
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String registerCustomerPost(@ModelAttribute("customer") Customer customer, Model model)
+    public String registerCustomerPost(@ModelAttribute("customer") Customer customer)
     {
         customer.setEnabled(true);
         customerService.addCustomer(customer);

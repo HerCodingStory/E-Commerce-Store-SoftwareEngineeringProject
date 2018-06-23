@@ -44,6 +44,16 @@ public class ProductDaoImpl implements ProductDao
         return products;
     }
 
+    public List<Product> getAllProductsByAuthor(String author)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Product WHERE Productauthor = " + author);
+        List<Product> products = ((Query) query).list();
+        session.flush();
+
+        return products;
+    }
+
     public void deleteProduct(String id)
     {
         Session session = sessionFactory.getCurrentSession();
@@ -103,16 +113,15 @@ public class ProductDaoImpl implements ProductDao
         return orderedProducts;
     }
 
-    public List<Product> getProductsByAuthor(String author)
+    public List<Product> searchProduct(String searchText)
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Product WHERE Productauthor = ?");
-        List<Product> results = ((Query) query).list();
+        Query query = session.createQuery("from Product where ProductAuthor like '%" + searchText + "%' OR ProductName like '%" + searchText +"%'");
+        List<Product> orderedProducts = ((Query) query).list();
         session.flush();
 
-        //FullTextEntityManager fulltext = Search.getFullTextEntityManager();
-
-        return results;
+        return orderedProducts;
     }
+
 
 }

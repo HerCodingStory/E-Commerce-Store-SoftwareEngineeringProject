@@ -1,12 +1,13 @@
 package com.ebookstore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.stereotype.Indexed;
+import org.springframework.web.multipart.MultipartFile;
+import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 // adds this class to database. An instance of this corresponds to a row
+@Indexed
 @Entity
 public class Product
 {
@@ -23,6 +24,17 @@ public class Product
     private Date productReleaseDate;
     private int unitInStock;
     private String productPublisher;
+
+    @OneToOne
+    @JoinColumn(name="ratingId")
+    private Rating rating;
+
+    @OneToOne
+    @JoinColumn(name="commentId")
+    private Comment comment;
+
+    @Transient
+    private MultipartFile productImage;
 
     public String getProductId() {
         return productId;
@@ -104,11 +116,37 @@ public class Product
         this.productPublisher = productPublisher;
     }
 
-    public Date getProductReleaseDate() {
-        return productReleaseDate;
+    public String getProductReleaseDate() {
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+
+        return sd.format(productReleaseDate);
     }
 
     public void setProductReleaseDate(Date productReleaseDate) {
         this.productReleaseDate = productReleaseDate;
+    }
+
+    public MultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 }
