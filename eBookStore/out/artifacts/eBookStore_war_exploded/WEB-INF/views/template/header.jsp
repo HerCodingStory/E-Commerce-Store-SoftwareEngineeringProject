@@ -20,7 +20,7 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Mine&Craft BookShop</title>
-    <link rel="icon" href="https://png.icons8.com/color/180/minecraft-sword.png">
+    <link rel="icon" href="https://png.icons8.com/windows/1600/amazon.png">
 
     <!-- Angular JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js" > </script>
@@ -61,7 +61,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-left" href="<c:url value="/"/>"><img src="https://preview.ibb.co/itUrq8/Picture1.png" alt="Picture1" border="0" width="200" height="50"></a>
+                    <a class="navbar-left" href="<c:url value="/"/>"><img src="https://preview.ibb.co/esHfqT/logo.png" alt="logo" border="0" width="175" height="50"></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
