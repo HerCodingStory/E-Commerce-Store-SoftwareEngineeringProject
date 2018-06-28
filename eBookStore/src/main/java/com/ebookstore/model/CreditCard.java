@@ -28,7 +28,7 @@ public class CreditCard implements Serializable
     @NotNull(message = "The credit card CVV must not be null.")
     private String cardVerificationValue;
 
-    @OneToOne
+    @OneToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name="customerId")
     private Customer customer;
 

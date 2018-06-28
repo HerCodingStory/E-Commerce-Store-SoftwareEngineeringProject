@@ -95,18 +95,6 @@ public class ProductDaoImpl implements ProductDao
         return orderedProducts;
     }
 
-    // Book Rating System is not done yet
-    /*
-    public List<Product> sortBooksByBookRating()
-    {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Product ORDER BY Productprice DESC");
-        List<Product> orderedProducts = ((Query) query).list();
-        session.flush();
-
-        return orderedProducts;
-    }*/
-
     public List<Product> sortBooksByReleaseDate()
     {
         Session session = sessionFactory.getCurrentSession();
@@ -116,6 +104,31 @@ public class ProductDaoImpl implements ProductDao
 
         return orderedProducts;
     }
+
+
+    // Book Rating System is not done yet
+    /*
+    public List<Product> sortBooksByRating()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Product ORDER BY rating DESC");
+        List<Product> orderedProducts = ((Query) query).list();
+        session.flush();
+
+        return orderedProducts;
+    }*/
+
+    // Book Selling System is not done yet
+    /*
+    public List<Product> sortBooksByTopSellers()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Product ORDER BY Productprice DESC");
+        List<Product> orderedProducts = ((Query) query).list();
+        session.flush();
+
+        return orderedProducts;
+    }*/
 
     public List<Product> searchProduct(String searchText)
     {

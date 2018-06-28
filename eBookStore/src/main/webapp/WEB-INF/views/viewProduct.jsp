@@ -1,4 +1,5 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@include file="/WEB-INF/views/template/header.jsp"%>
 
 <div class="container-wrapper">
@@ -9,7 +10,7 @@
             <p class="lead">Here is the detail information of the product!</p>
         </div>
 
-        <div class="container">
+        <div class="container" ng-app = "cartApp">
             <div class="row">
                 <div class="col-md-5">
                     <img src="<c:url value="/resources/images/${product.productId}.png" /> " alt="image" style="width:75%"/>
@@ -31,11 +32,28 @@
                         <strong>Condition</strong> : ${product.productCondition}
                     </p>
                     <p>
-                        <strong>Price</strong> : $${product.productPrice}
-                    </p>
-                    <p>
                         <strong>Release Date</strong> : ${product.productReleaseDate}
                     </p>
+                    <h4>
+                        <strong>Price</strong> : $${product.productPrice}
+                    </h4>
+
+                    <br>
+
+                    <c:set var="role" scope="page" value="${param.role}" />
+                    <c:set var="url" scope="page" value="/productList/sortedTitle" />
+                    <c:if test="${role='admin'}">
+                        <c:set var="url" scope="page" value="/admin/productInventory" />
+                    </c:if>
+
+                    <p ng-controller="cartCtrl">
+                        <a href="<c:url value="${url}" />" class="btn btn-default">Back</a>
+                        <a href="#" class="btn btn-warning btn-large"
+                           ng-click="addToCart('${product.productId}')"><span
+                                class="glyphicon glyphicon-shopping-cart"></span>Order Now</a>
+                        <a href="<spring:url value="/customer/cart" />" class="btn btn-default">View Cart</a>
+                    </p>
+
                     <p>
                         <strong>Rating</strong> :
                         <span class="fa fa-star checked"></span>
@@ -47,11 +65,11 @@
                     <p>
                         <strong>Comments</strong> : ${product.comment}
                     </p>
+
                 </div>
 
             </div>
         </div>
 
-
-
-<%@include file="/WEB-INF/views/template/footer.jsp"%>
+        <script src="<c:url value="/resources/js/controller.js" /> "></script>
+        <%@include file="/WEB-INF/views/template/footer.jsp"%>

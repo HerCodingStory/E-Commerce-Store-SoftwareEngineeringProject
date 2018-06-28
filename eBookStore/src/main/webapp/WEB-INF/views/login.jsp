@@ -16,7 +16,7 @@
                     <div class="error" style="color: #ff0000;">${error}</div>
                 </c:if>
                 <div class="form-group">
-                    <label for="username">User: </label>
+                    <label for="username">Username: </label>
                     <input type="text" id="username" name="username" class="form-control" />
                 </div>
                 <div class="form-group">
@@ -24,7 +24,8 @@
                     <input type="password" id="password" name="password" class="form-control" />
                 </div>
 
-                <input type="submit" value="Submit" class="btn btn-default">
+                <input type="submit" value="Submit"   class="btn btn-default">
+                <a href="<c:url value="/register" />" class="btn btn-default" style="float: right">Register</a>
 
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             </form>

@@ -42,7 +42,7 @@ public class AdminController
         return "admin";
     }
 
-    @RequestMapping("/productInventory")
+    /*@RequestMapping("/productInventory")
     public String productInventory(Model model) {
         List<Product> products = productService.getProductList();
         model.addAttribute("products", products);
@@ -68,7 +68,7 @@ public class AdminController
         model.addAttribute("product", product);
 
         return "addProduct";
-    }
+    }*/
 
     /*@RequestMapping(value="/product/addProduct", method = RequestMethod.POST)
     public String addProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result,
@@ -95,14 +95,14 @@ public class AdminController
         return "redirect:/admin/productInventory";
     }*/
 
-    @RequestMapping("/product/editProduct/{id}")
+    /*@RequestMapping("/product/editProduct/{id}")
     public String editProduct(@PathVariable("id") int id, Model model) {
         Product product = productService.getProductById(id);
 
         model.addAttribute("product", product);
 
         return "editProduct";
-    }
+    }*/
 
     /*@RequestMapping(value="/product/editProduct", method = RequestMethod.POST)
     public String editProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result,

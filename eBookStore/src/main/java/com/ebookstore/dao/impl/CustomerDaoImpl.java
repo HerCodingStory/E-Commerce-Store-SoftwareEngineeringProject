@@ -1,9 +1,7 @@
 package com.ebookstore.dao.impl;
 
 import com.ebookstore.dao.CustomerDao;
-import com.ebookstore.model.Authorities;
-import com.ebookstore.model.Customer;
-import com.ebookstore.model.Users;
+import com.ebookstore.model.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -38,14 +36,29 @@ public class CustomerDaoImpl implements CustomerDao
         newUser.setCustomerId(customer.getCustomerId());
 
         Authorities newAuthority = new Authorities();
-
         newAuthority.setUsername(customer.getUsername());
         newAuthority.setAuthority("ROLE_USER");
         session.saveOrUpdate(newUser);
         session.saveOrUpdate(newAuthority);
 
-        //Cart newcar = new Cart();
+        Cart newCart = new Cart();
+        newCart.setCustomer(customer);
+        customer.setCart(newCart);
         session.saveOrUpdate(customer);
+        session.saveOrUpdate(newCart);
+
+        Rating newRating = new Rating();
+        newRating.setCustomer(customer);
+        customer.setRating(newRating);
+        session.saveOrUpdate(customer);
+        session.saveOrUpdate(newRating);
+
+        Comment newComment = new Comment();
+        newComment.setCustomer(customer);
+        customer.setComment(newComment);
+        session.saveOrUpdate(customer);
+        session.saveOrUpdate(newComment);
+
         session.flush();
     }
 
@@ -74,6 +87,13 @@ public class CustomerDaoImpl implements CustomerDao
     {
         Session session = sessionFactory.getCurrentSession();
         session.delete(getCustomerById(id));
+        session.flush();
+    }
+
+    public void editCustomer(Customer customer)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(customer);
         session.flush();
     }
 
