@@ -19,7 +19,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Mine&Craft BookShop</title>
+    <title>AmazonJr</title>
     <link rel="icon" href="https://png.icons8.com/windows/1600/amazon.png">
 
     <!-- Angular JS -->
