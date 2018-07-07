@@ -19,8 +19,8 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Mine&Craft BookShop</title>
-    <link rel="icon" href="https://png.icons8.com/color/180/minecraft-sword.png">
+    <title>AmazonJr</title>
+    <link rel="icon" href="https://png.icons8.com/windows/1600/amazon.png">
 
     <!-- Angular JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js" > </script>
@@ -61,12 +61,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-left" href="<c:url value="/"/>"><img src="https://preview.ibb.co/itUrq8/Picture1.png" alt="Picture1" border="0" width="200" height="50"></a>
+                    <a class="navbar-left" href="<c:url value="/"/>"><img src="https://preview.ibb.co/esHfqT/logo.png" alt="logo" border="0" width="175" height="50"></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="<c:url value="/productList"/>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
+                            <a href="<c:url value="/productList/sortedTitle"/>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<c:url value="/productList/sortedTitle"/>">Sort By Title</a></li>
                                 <li><a href="<c:url value="/productList/sortedAuthors"/>">Sort By Author</a></li>
@@ -75,14 +75,16 @@
                                 <li><a href="<c:url value="/productList/sortedReleaseDate"/>">Sort By Release Date</a></li>
                             </ul>
                         </li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#AboutUs">About Us</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <c:if test="${pageContext.request.userPrincipal.name != 'admin'}">
                             <li><a href="<c:url value="/account/viewCustomer/" />">Welcome: ${pageContext.request.userPrincipal.name}</a></li>
+                            </c:if>
                             <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
                             <c:if test="${pageContext.request.userPrincipal.name != 'admin'}">
-                               <!-- <li><a href="<c:url value="/customer/cart" />">Cart</a></li> -->
+                               <li><a href="<c:url value="/customer/cart" />">Cart</a></li>
                             </c:if>
                             <c:if test="${pageContext.request.userPrincipal.name  == 'admin'}">
                                 <li><a href="<c:url value="/admin" />">Admin</a></li>

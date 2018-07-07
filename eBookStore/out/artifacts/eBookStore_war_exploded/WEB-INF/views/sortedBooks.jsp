@@ -20,11 +20,6 @@
             <h1>All Products</h1>
 
             <p class="lead">This is what we have:</p>
-
-            <div class="btn-group">
-                <button><a href="#">Sort By Book Rating</a></button>
-                <button><a href="<c:url value="/productList/sortedReleaseDate" />">Sort By Release Date</a></button>
-            </div>
         </div>
 
         <table class="table table-striped table-hover">
@@ -35,6 +30,8 @@
                     <th>Author's Name</th>
                     <th>Category</th>
                     <th>Condition</th>
+                    <th>Release Date</th>
+                    <th>Rating</th>
                     <th>Price</th>
                     <th></th>
                 </tr>
@@ -46,6 +43,8 @@
                     <td>${product.productAuthor}</td>
                     <td>${product.productCategory}</td>
                     <td>${product.productCondition}</td>
+                    <td>${product.productReleaseDate}</td>
+                    <td>${product.rating.rating}</td>
                     <td>${product.productPrice} USD</td>
                     <td><a href="<spring:url value="/productList/viewProduct/${product.productId}" />"
                     ><span class="glyphicon glyphicon-info-sign"></span></a></td>

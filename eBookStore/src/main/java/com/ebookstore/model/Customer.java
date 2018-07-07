@@ -1,12 +1,17 @@
 package com.ebookstore.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Customer implements Serializable{
+public class Customer implements Serializable
+{
+
+    private static final long serialVersionUID = 5140900014886997914L;
 
     @Id
     @GeneratedValue
@@ -27,11 +32,11 @@ public class Customer implements Serializable{
 
     private boolean enabled;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="shippingAddressId")
     private ShippingAddress shippingAddress;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="creditCardId")
     private CreditCard creditCard;
 
@@ -42,6 +47,14 @@ public class Customer implements Serializable{
     @OneToOne
     @JoinColumn(name="commentId")
     private Comment comment;
+
+    @OneToOne
+    @JoinColumn(name = "cartId")
+    @JsonIgnore
+    private Cart cart;
+
+    @Transient
+    private MultipartFile customerImage;
 
     public int getCustomerId() {
         return customerId;
@@ -113,6 +126,38 @@ public class Customer implements Serializable{
 
     public void setCreditCard(CreditCard creditcard) {
         this.creditCard = creditcard;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public MultipartFile getCustomerImage() {
+        return customerImage;
+    }
+
+    public void setCustomerImage(MultipartFile customerImage) {
+        this.customerImage = customerImage;
     }
 }
 

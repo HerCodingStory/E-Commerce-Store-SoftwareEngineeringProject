@@ -1,13 +1,14 @@
 package com.ebookstore.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Rating
+public class Rating implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private int ratingId;
     private int rating;
     private Date time;
@@ -15,9 +16,11 @@ public class Rating
 
     //private Customer customer;
     @OneToOne
+    @JoinColumn(name="productId")
     private Product product;
 
     @OneToOne
+    @JoinColumn(name="customerId")
     private Customer customer;
 
     public int getRatingId() {
