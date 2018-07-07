@@ -3,14 +3,17 @@ package com.ebookstore.model;
 import org.springframework.stereotype.Indexed;
 import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 // adds this class to database. An instance of this corresponds to a row
 @Indexed
 @Entity
-public class Product
+public class Product implements Serializable
 {
+    private static final long serialVersionUID = -3532377236419382983L;
+
     @Id // unique id
     @GeneratedValue(strategy = GenerationType.AUTO) // generates products ID as they are added
     private int productId;
@@ -116,13 +119,13 @@ public class Product
         this.productPublisher = productPublisher;
     }
 
-    public String getProductReleaseDate() {
-        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
-
-        return sd.format(productReleaseDate);
+    public Date getProductReleaseDate()
+    {
+        return productReleaseDate;
     }
 
-    public void setProductReleaseDate(Date productReleaseDate) {
+    public void setProductReleaseDate(Date productReleaseDate)
+    {
         this.productReleaseDate = productReleaseDate;
     }
 

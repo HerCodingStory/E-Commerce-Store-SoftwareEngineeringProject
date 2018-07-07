@@ -12,19 +12,15 @@
 
         <form:form action="${pageContext.request.contextPath}/admin/product/addProduct" method="post"
                    commandName="product" enctype="multipart/form-data">
+
         <div class="form-group">
             <label for="name">Name</label> <form:errors path="productName" cssStyle="color: #ff0000;" />
             <form:input path="productName" id="name" class="form-Control"/>
         </div>
 
         <div class="form-group">
-            <label for="category">Category</label>
-            <label class="checkbox-inline"><form:radiobutton path="productCategory" id="category"
-                                                             value="instrument" />Instrument</label>
-            <label class="checkbox-inline"><form:radiobutton path="productCategory" id="category"
-                                                             value="record" />Record</label>
-            <label class="checkbox-inline"><form:radiobutton path="productCategory" id="category"
-                                                             value="accessory" />Accessory</label>
+            <label for="author">Author</label> <form:errors path="productAuthor" cssStyle="color: #ff0000;" />
+            <form:input path="productAuthor" id="author" class="form-Control"/>
         </div>
 
         <div class="form-group">
@@ -33,14 +29,19 @@
         </div>
 
         <div class="form-group">
-            <label for="price">Price</label>  <form:errors path="productPrice" cssStyle="color: #ff0000;" />
-            <form:input path="productPrice" id="price" class="form-Control"/>
+            <label for="publisher">Publisher</label>
+            <form:input path="productPublisher" id="publisher" class="form-Control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category</label>
+            <form:textarea path="productCategory" id="category" class="form-Control"/>
         </div>
 
         <div class="form-group">
             <label for="condition">Condition</label>
             <label class="checkbox-inline"><form:radiobutton path="productCondition" id="condition"
-                                                             value="new" />New</label>
+                                                             value="new" checked="checked"/>New</label>
             <label class="checkbox-inline"><form:radiobutton path="productCondition" id="condition"
                                                              value="used" />Used</label>
         </div>
@@ -48,9 +49,14 @@
         <div class="form-group">
             <label for="status">Status</label>
             <label class="checkbox-inline"><form:radiobutton path="productStatus" id="status"
-                                                             value="active" />Active</label>
+                                                             value="active" checked="checked"/>Active</label>
             <label class="checkbox-inline"><form:radiobutton path="productStatus" id="status"
                                                              value="inactive" />Inactive</label>
+        </div>
+
+        <div class="form-group">
+            <label for="releaseDate">Release Date (YYYY-MM-DD)</label>
+            <form:input path="productReleaseDate" id="releaseDate" class="form-Control"/>
         </div>
 
         <div class="form-group">
@@ -60,8 +66,8 @@
         </div>
 
         <div class="form-group">
-            <label for="manufacturer">Manufacturer</label>
-            <form:input path="productManufacturer" id="manufacturer" class="form-Control"/>
+            <label for="price">Price</label>  <form:errors path="productPrice" cssStyle="color: #ff0000;" />
+            <form:input path="productPrice" id="price" class="form-Control"/>
         </div>
 
         <div class="form-group">

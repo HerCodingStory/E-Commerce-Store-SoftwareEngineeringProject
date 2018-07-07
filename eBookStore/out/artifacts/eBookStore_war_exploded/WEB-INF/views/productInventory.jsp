@@ -11,6 +11,8 @@
             <p class="lead">This is the product inventory page!</p>
         </div>
 
+        <a href="<spring:url value="/admin/product/addProduct" />" class="btn btn-primary">Add Product</a>
+
         <table class="table table-striped table-hover">
             <thead>
             <tr class="bg-success">
@@ -30,7 +32,7 @@
                     <td>${product.productCategory}</td>
                     <td>${product.productCondition}</td>
                     <td>${product.productPrice} USD</td>
-                    <td><a href="<spring:url value="/product/viewProduct/${product.productId}" />"
+                    <td><a href="<spring:url value="/productList/viewProduct/${product.productId}" />"
                     ><span class="glyphicon glyphicon-info-sign"></span></a>
                         <a href="<spring:url value="/admin/product/deleteProduct/${product.productId}" />"
                         ><span class="glyphicon glyphicon-remove"></span></a>
@@ -41,6 +43,6 @@
             </c:forEach>
         </table>
 
-        <a href="<spring:url value="/admin/product/addProduct" />" class="btn btn-primary">Add Product</a>
+
 
         <%@include file="/WEB-INF/views/template/footer.jsp" %>

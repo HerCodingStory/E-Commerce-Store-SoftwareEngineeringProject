@@ -20,13 +20,8 @@
         </div>
 
         <div class="form-group">
-            <label for="category">Category</label>
-            <label class="checkbox-inline"><form:radiobutton path="productCategory" id="category"
-                                                             value="instrument" />Instrument</label>
-            <label class="checkbox-inline"><form:radiobutton path="productCategory" id="category"
-                                                             value="record" />Record</label>
-            <label class="checkbox-inline"><form:radiobutton path="productCategory" id="category"
-                                                             value="accessory" />Accessory</label>
+            <label for="author">Author</label>
+            <form:input path="productAuthor" id="author" class="form-Control" value="${product.productAuthor}"/>
         </div>
 
         <div class="form-group">
@@ -35,14 +30,19 @@
         </div>
 
         <div class="form-group">
-            <label for="price">Price</label>
-            <form:input path="productPrice" id="price" class="form-Control" value="${product.productPrice}"/>
+            <label for="publisher">Publisher</label>
+            <form:input path="productPublisher" id="publisher" class="form-Control" value="${product.productPublisher}"/>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category</label>
+            <form:textarea path="productCategory" id="category" class="form-Control" value="${product.productCategory}"/>
         </div>
 
         <div class="form-group">
             <label for="condition">Condition</label>
             <label class="checkbox-inline"><form:radiobutton path="productCondition" id="condition"
-                                                             value="new" />New</label>
+                                                             value="new" checked="checked"/>New</label>
             <label class="checkbox-inline"><form:radiobutton path="productCondition" id="condition"
                                                              value="used" />Used</label>
         </div>
@@ -50,9 +50,14 @@
         <div class="form-group">
             <label for="status">Status</label>
             <label class="checkbox-inline"><form:radiobutton path="productStatus" id="status"
-                                                             value="active" />Active</label>
+                                                             value="active" checked="checked"/>Active</label>
             <label class="checkbox-inline"><form:radiobutton path="productStatus" id="status"
                                                              value="inactive" />Inactive</label>
+        </div>
+
+        <div class="form-group">
+            <label for="releaseDate">Release Date (YYYY-MM-DD)</label>
+            <form:input path="productReleaseDate" id="releaseDate" class="form-Control" value="${product.productReleaseDate}"/>
         </div>
 
         <div class="form-group">
@@ -61,8 +66,8 @@
         </div>
 
         <div class="form-group">
-            <label for="manufacturer">Manufacturer</label>
-            <form:input path="productManufacturer" id="manufacturer" class="form-Control" value="${product.productManufacturer}"/>
+            <label for="price">Price</label>
+            <form:input path="productPrice" id="price" class="form-Control" value="${product.productPrice}"/>
         </div>
 
         <div class="form-group">

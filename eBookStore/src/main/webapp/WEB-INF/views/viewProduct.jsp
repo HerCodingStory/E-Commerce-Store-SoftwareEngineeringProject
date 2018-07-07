@@ -32,7 +32,13 @@
                         <strong>Condition</strong> : ${product.productCondition}
                     </p>
                     <p>
+                        <strong>Status</strong> : ${product.productCondition}
+                    </p>
+                    <p>
                         <strong>Release Date</strong> : ${product.productReleaseDate}
+                    </p>
+                    <p>
+                        <strong>Unit in Stock</strong> : ${product.unitInStock}
                     </p>
                     <h4>
                         <strong>Price</strong> : $${product.productPrice}
@@ -41,17 +47,25 @@
                     <br>
 
                     <c:set var="role" scope="page" value="${param.role}" />
-                    <c:set var="url" scope="page" value="/productList/sortedTitle" />
-                    <c:if test="${role='admin'}">
+                    <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
                         <c:set var="url" scope="page" value="/admin/productInventory" />
+                    </c:if>
+                    <c:if test="${pageContext.request.userPrincipal.name != 'admin'}">
+                        <c:set var="url" scope="page" value="/productList/sortedTitle" />
                     </c:if>
 
                     <p ng-controller="cartCtrl">
                         <a href="<c:url value="${url}" />" class="btn btn-default">Back</a>
-                        <a href="#" class="btn btn-warning btn-large"
-                           ng-click="addToCart('${product.productId}')"><span
-                                class="glyphicon glyphicon-shopping-cart"></span>Order Now</a>
-                        <a href="<spring:url value="/customer/cart" />" class="btn btn-default">View Cart</a>
+
+                        <c:if test="${(pageContext.request.userPrincipal.name != null) && (pageContext.request.userPrincipal.name != 'admin')}">
+                            <a href="#" class="btn btn-warning btn-large"
+                               ng-click="addToCart('${product.productId}')"><span
+                                    class="glyphicon glyphicon-shopping-cart"></span>Order Now</a>
+                            <a href="<spring:url value="/customer/cart" />" class="btn btn-default">View Cart</a>
+                        </c:if>
+                        <c:if test="${pageContext.request.userPrincipal.name == null}">
+                            <a href="<c:url value="/login" />" class="btn btn-warning btn-large">Login to Buy</a>
+                        </c:if>
                     </p>
 
                     <p>
@@ -63,7 +77,7 @@
                         <span class="fa fa-star"></span>
                     </p>
                     <p>
-                        <strong>Comments</strong> : ${product.comment}
+                        <strong>Comments</strong> : ${product.comment} this book store is great
                     </p>
 
                 </div>

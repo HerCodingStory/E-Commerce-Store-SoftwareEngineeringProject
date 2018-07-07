@@ -9,6 +9,8 @@ import java.io.Serializable;
 @Entity
 public class CreditCard implements Serializable
 {
+    private static final long serialVersionUID = -6091579459463730482L;
+
     @Id
     @GeneratedValue
     private int creditCardId;

@@ -19,7 +19,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Mine&Craft BookShop</title>
+    <title>AmazonJr</title>
     <link rel="icon" href="https://png.icons8.com/windows/1600/amazon.png">
 
     <!-- Angular JS -->
@@ -75,7 +75,7 @@
                                 <li><a href="<c:url value="/productList/sortedReleaseDate"/>">Sort By Release Date</a></li>
                             </ul>
                         </li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#AboutUs">About Us</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <c:if test="${pageContext.request.userPrincipal.name != null}">

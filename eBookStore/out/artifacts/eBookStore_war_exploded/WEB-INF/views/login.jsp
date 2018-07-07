@@ -24,8 +24,8 @@
                     <input type="password" id="password" name="password" class="form-control" />
                 </div>
 
-                <input type="submit" value="Submit"   class="btn btn-default">
-                <a href="<c:url value="/register" />" class="btn btn-default" style="float: right">Register</a>
+                <input type="submit" value="Submit"   class="btn btn-warning btn-large" style="float: right">
+                <a href="<c:url value="/register" />" class="btn btn-default" style="float: left">Register</a>
 
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             </form>

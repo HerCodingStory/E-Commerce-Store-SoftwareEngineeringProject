@@ -75,7 +75,7 @@
                                 <li><a href="<c:url value="/productList/sortedReleaseDate"/>">Sort By Release Date</a></li>
                             </ul>
                         </li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#AboutUs">About Us</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <c:if test="${pageContext.request.userPrincipal.name != null}">

@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 @Entity
 public class ShippingAddress implements Serializable
 {
+    private static final long serialVersionUID = 989191150380037359L;
+
     @Id
     @GeneratedValue
     private int shippingAddressId;

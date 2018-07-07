@@ -24,11 +24,10 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin")
+
 public class AdminController
 {
-    // add dependency
-    //private Path path;
+    private Path path;
 
     @Autowired
     private ProductService productService;
@@ -37,21 +36,24 @@ public class AdminController
     private CustomerService customerService;
 
     // This method takes you to the admin page
+    @RequestMapping("/admin")
     public String adminPage()
     {
         return "admin";
     }
 
-    /*@RequestMapping("/productInventory")
-    public String productInventory(Model model) {
+    @RequestMapping("/admin/productInventory")
+    public String productInventory(Model model)
+    {
         List<Product> products = productService.getProductList();
         model.addAttribute("products", products);
 
         return "productInventory";
     }
 
-    @RequestMapping("/customer")
-    public String customerManagement(Model model) {
+    @RequestMapping("/admin/customerManagement")
+    public String customerManagement(Model model)
+    {
 
         List<Customer> customerList = customerService.getAllCustomers();
         model.addAttribute("customerList", customerList);
@@ -59,8 +61,9 @@ public class AdminController
         return "customerManagement";
     }
 
-    @RequestMapping("/product/addProduct")
-    public String addProduct(Model model) {
+    @RequestMapping("/admin/product/addProduct")
+    public String addProduct(Model model)
+    {
         Product product = new Product();
         product.setProductCondition("new");
         product.setProductStatus("active");
@@ -68,11 +71,11 @@ public class AdminController
         model.addAttribute("product", product);
 
         return "addProduct";
-    }*/
+    }
 
-    /*@RequestMapping(value="/product/addProduct", method = RequestMethod.POST)
-    public String addProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result,
-                                 HttpServletRequest request) {
+    @RequestMapping(value="/admin/product/addProduct", method = RequestMethod.POST)
+    public String addProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result, HttpServletRequest request)
+    {
         if(result.hasErrors()) {
             return "addProduct";
         }
@@ -93,18 +96,18 @@ public class AdminController
         }
 
         return "redirect:/admin/productInventory";
-    }*/
+    }
 
-    /*@RequestMapping("/product/editProduct/{id}")
+    @RequestMapping("/admin/product/editProduct/{id}")
     public String editProduct(@PathVariable("id") int id, Model model) {
         Product product = productService.getProductById(id);
 
         model.addAttribute("product", product);
 
         return "editProduct";
-    }*/
+    }
 
-    /*@RequestMapping(value="/product/editProduct", method = RequestMethod.POST)
+    @RequestMapping(value="/admin/product/editProduct", method = RequestMethod.POST)
     public String editProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result,
                                   HttpServletRequest request) {
         if(result.hasErrors()) {
@@ -127,9 +130,9 @@ public class AdminController
         productService.editProduct(product);
 
         return "redirect:/admin/productInventory";
-    }*/
+    }
 
-    /*@RequestMapping("/product/deleteProduct/{id}")
+    @RequestMapping("/admin/product/deleteProduct/{id}")
     public String deleteProduct(@PathVariable int id, Model model, HttpServletRequest request) {
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
         path = Paths.get(rootDirectory + "\\WEB-INF\\resources\\images\\" + id + ".png");
@@ -146,6 +149,6 @@ public class AdminController
         productService.deleteProduct(product);
 
         return "redirect:/admin/productInventory";
-    }*/
+    }
 
 }
