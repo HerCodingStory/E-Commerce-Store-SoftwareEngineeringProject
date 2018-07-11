@@ -1,6 +1,5 @@
 package com.ebookstore.model;
 
-import org.springframework.stereotype.Indexed;
 import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
 import java.io.Serializable;
