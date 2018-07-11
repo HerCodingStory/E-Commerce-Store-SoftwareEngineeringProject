@@ -22,3 +22,6 @@ What you need:
 - h2
 - jQuery
 - Angular
+
+Deploy with Heroku:
+https://amazonjr.herokuapp.com/
