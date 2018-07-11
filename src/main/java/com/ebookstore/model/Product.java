@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 // adds this class to database. An instance of this corresponds to a row
-@Indexed
 @Entity
 public class Product implements Serializable
 {
