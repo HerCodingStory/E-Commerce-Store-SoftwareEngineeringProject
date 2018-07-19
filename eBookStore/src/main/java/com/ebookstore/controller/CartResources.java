@@ -75,12 +75,28 @@ public class CartResources
 
     }
 
-    @RequestMapping(value = "/change/{productId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/plus/{productId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void changeQuantity (@PathVariable(value = "productId") int productId) {
+    public void addToQuantity (@PathVariable(value = "productId") int productId) {
         CartItem cartItem = cartItemService.getCartItemByProductId(productId);
-        cartItem.setQuantity(cartItem.getCartItemId()+1);
+        Product product = productService.getProductById(productId);
+        cartItem.setQuantity(cartItem.getQuantity()+1);
+        cartItem.setTotalPrice(product.getProductPrice()*cartItem.getQuantity());
         cartItemService.addCartItem(cartItem);
+    }
+
+    @RequestMapping(value = "/minus/{productId}", method = RequestMethod.PUT)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void subtractFromQuantity (@PathVariable(value = "productId") int productId) {
+        CartItem cartItem = cartItemService.getCartItemByProductId(productId);
+        Product product = productService.getProductById(productId);
+        if (cartItem.getQuantity() > 1)
+        {
+            cartItem.setQuantity(cartItem.getQuantity() - 1);
+            cartItem.setTotalPrice(product.getProductPrice()*cartItem.getQuantity());
+            cartItemService.addCartItem(cartItem);
+        }
+
     }
 
     @RequestMapping(value = "/{cartId}", method = RequestMethod.DELETE)

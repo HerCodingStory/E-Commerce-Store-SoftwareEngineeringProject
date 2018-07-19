@@ -110,7 +110,7 @@
         <div class="form-group">
             <label for="cardVerificationValue">CVV</label>
             <form:errors path="creditCard.cardVerificationValue" cssStyle="color: #ff0000" />
-            <form:input path="creditCard.cardVerificationValue" id="cardVerificationValue" class="form-Control"/>
+            <form:password path="creditCard.cardVerificationValue" id="cardVerificationValue" class="form-Control"/>
         </div>
 
         <br><br>

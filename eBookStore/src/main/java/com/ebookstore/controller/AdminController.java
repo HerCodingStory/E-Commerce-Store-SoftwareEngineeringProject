@@ -41,6 +41,7 @@ public class AdminController
         return "admin";
     }
 
+    // This method shows the list of products in the website
     @RequestMapping("/admin/productInventory")
     public String productInventory(Model model)
     {
@@ -50,6 +51,7 @@ public class AdminController
         return "productInventory";
     }
 
+    // This method shows the list of customer in the website
     @RequestMapping("/admin/customerManagement")
     public String customerManagement(Model model)
     {
@@ -60,6 +62,7 @@ public class AdminController
         return "customerManagement";
     }
 
+    // This method adds a product to the website
     @RequestMapping("/admin/productInventory/addProduct")
     public String addProduct(Model model)
     {
@@ -73,15 +76,14 @@ public class AdminController
         return "addProduct";
     }
 
+    //
     @RequestMapping(value="/admin/productInventory/addProduct", method = RequestMethod.POST)
     public String addProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result, HttpServletRequest request)
     {
-        System.out.println("Hello");
         if(result.hasErrors()) {
             System.out.println(result.getFieldError());
             return "addProduct";
         }
-        System.out.println("Bye");
 
         productService.addProduct(product);
 

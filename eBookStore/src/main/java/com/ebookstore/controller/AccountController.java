@@ -49,8 +49,6 @@ public class AccountController
 
         model.addAttribute("customer", customer);
 
-
-
         return "editCustomer";
     }
 
@@ -83,8 +81,4 @@ public class AccountController
 
         return "redirect:/account/viewCustomer/";
     }
-
-
-
-
 }
