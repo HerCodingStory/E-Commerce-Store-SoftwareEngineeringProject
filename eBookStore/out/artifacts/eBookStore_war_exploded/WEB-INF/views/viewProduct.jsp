@@ -21,6 +21,7 @@
                     <p>${product.productDescription}</p>
                     <p>
                         <strong>Author</strong> : <a href="<spring:url value="/productList/viewOtherBooks/${product.productId}" />" data-toggle="tooltip" title="${product.productAuthorBio}">${product.productAuthor}</a>
+                        <a target="_blank" href="https://en.wikipedia.org/wiki/${product.productAuthor}"><span class="glyphicon glyphicon-globe"></span></a>
                     </p>
                     <p>
                         <strong>Publisher</strong> : ${product.productPublisher}
