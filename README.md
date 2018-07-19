@@ -8,9 +8,13 @@ Trello link:
 
 Websites I used to start learning Sprint:
 - https://spring.io/guides/gs/spring-boot/#initial
+- https://www.udemy.com/building-an-e-commerce-store-using-java-spring-framework/
 
 Website pictures:
 ![alt text](https://github.com/cristyevr94/SoftwareEng/blob/CristinaV/WebsiteFront.PNG)
+
+My database content:
+(https://github.com/cristyevr94/SoftwareEng/blob/CristinaV/backup.sql)
 
 What you need:
 - Maven
