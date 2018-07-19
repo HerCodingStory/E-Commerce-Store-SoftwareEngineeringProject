@@ -10,7 +10,7 @@
             <p class="lead">Fill the below information to add a product:</p>
         </div>
 
-        <form:form action="${pageContext.request.contextPath}/admin/product/addProduct" method="post"
+        <form:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct" method="post"
                    commandName="product" enctype="multipart/form-data">
 
         <div class="form-group">
@@ -24,7 +24,12 @@
         </div>
 
         <div class="form-group">
-            <label for="description">Description</label>
+            <label for="authorBio">Author's Bio</label>
+            <form:textarea path="productAuthorBio" id="authorBio" class="form-Control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Book Description</label>
             <form:textarea path="productDescription" id="description" class="form-Control"/>
         </div>
 
@@ -55,7 +60,15 @@
         </div>
 
         <div class="form-group">
-            <label for="releaseDate">Release Date (YYYY-MM-DD)</label>
+            <label for="topSellerStatus">Top Seller Status</label>
+            <label class="checkbox-inline"><form:radiobutton path="topSellerStatus" id="topSellerStatus"
+                                                             value="active" checked="checked"/>Active</label>
+            <label class="checkbox-inline"><form:radiobutton path="topSellerStatus" id="topSellerStatus"
+                                                             value="inactive" />Inactive</label>
+        </div>
+
+        <div class="form-group">
+            <label for="releaseDate">Release Date (YYYY/MM/DD)</label>
             <form:input path="productReleaseDate" id="releaseDate" class="form-Control"/>
         </div>
 

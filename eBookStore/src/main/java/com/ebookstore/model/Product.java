@@ -1,14 +1,15 @@
 package com.ebookstore.model;
 
-import org.springframework.stereotype.Indexed;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 // adds this class to database. An instance of this corresponds to a row
-@Indexed
 @Entity
 public class Product implements Serializable
 {
@@ -19,6 +20,7 @@ public class Product implements Serializable
     private int productId;
     private String productName;
     private String productAuthor;
+    private String productAuthorBio;
     private String productCategory;
     private String productDescription;
     private double productPrice;
@@ -27,6 +29,7 @@ public class Product implements Serializable
     private Date productReleaseDate;
     private int unitInStock;
     private String productPublisher;
+    private String topSellerStatus;
 
     @OneToOne
     @JoinColumn(name="ratingId")
@@ -151,5 +154,21 @@ public class Product implements Serializable
 
     public void setComment(Comment comment) {
         this.comment = comment;
+    }
+
+    public String getTopSellerStatus() {
+        return topSellerStatus;
+    }
+
+    public void setTopSellerStatus(String topSellerStatus) {
+        this.topSellerStatus = topSellerStatus;
+    }
+
+    public String getProductAuthorBio() {
+        return productAuthorBio;
+    }
+
+    public void setProductAuthorBio(String productAuthorBio) {
+        this.productAuthorBio = productAuthorBio;
     }
 }

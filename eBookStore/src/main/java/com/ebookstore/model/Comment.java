@@ -11,15 +11,23 @@ public class Comment implements Serializable
     @Id
     @GeneratedValue
     private int commentId;
-    private String comment;
-    private Date time;
-    private String ip;
 
-    @OneToOne
+    @Column(nullable = false, length = 20)
+    private String commentTitle;
+
+    private String username;
+
+    @Column(nullable = false, length = 500)
+    private String comment;
+
+    @Column(nullable = false)
+    private Date time = new Date();
+
+    @ManyToOne
     @JoinColumn(name="productId")
     private Product product;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="customerId")
     private Customer customer;
 
@@ -37,14 +45,6 @@ public class Comment implements Serializable
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
     }
 
     public Product getProduct() {
@@ -69,5 +69,21 @@ public class Comment implements Serializable
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public String getCommentTitle() {
+        return commentTitle;
+    }
+
+    public void setCommentTitle(String commentTitle) {
+        this.commentTitle = commentTitle;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

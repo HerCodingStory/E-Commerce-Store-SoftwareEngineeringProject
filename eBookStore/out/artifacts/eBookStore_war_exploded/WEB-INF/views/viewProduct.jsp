@@ -20,19 +20,22 @@
                     <h3>${product.productName}</h3>
                     <p>${product.productDescription}</p>
                     <p>
-                        <strong>Author</strong> : <a target="_blank" href="https://en.wikipedia.org/wiki/${product.productAuthor}">${product.productAuthor}</a>
+                        <strong>Author</strong> : <a href="<spring:url value="/productList/viewOtherBooks/${product.productId}" />" data-toggle="tooltip" title="${product.productAuthorBio}">${product.productAuthor}</a>
                     </p>
                     <p>
                         <strong>Publisher</strong> : ${product.productPublisher}
                     </p>
                     <p>
-                        <strong>Category</strong> : ${product.productCategory}
+                        <strong>Genre</strong> : ${product.productCategory}
                     </p>
                     <p>
                         <strong>Condition</strong> : ${product.productCondition}
                     </p>
                     <p>
-                        <strong>Status</strong> : ${product.productCondition}
+                        <strong>Status</strong> : ${product.productStatus}
+                    </p>
+                    <p>
+                        <strong>Top Seller Status</strong> : ${product.topSellerStatus}
                     </p>
                     <p>
                         <strong>Release Date</strong> : ${product.productReleaseDate}
@@ -69,21 +72,57 @@
                     </p>
 
                     <p>
-                        <strong>Rating</strong> :
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
+                        <form id="form" commmandName="interceptedPath" method="post">
+                            <strong>Rating</strong> :
+                            <input type="radio" name="rating" value="1" />
+                            <input type="radio" name="rating" value="2" />
+                            <input type="radio" name="rating" value="3" />
+                            <input type="radio" name="rating" value="4" />
+                            <input type="radio" name="rating" value="5" />
+                        </form>
                     </p>
                     <p>
-                        <strong>Comments</strong> : ${product.comment} this book store is great
+                        <strong>Comments</strong> :
                     </p>
 
                 </div>
 
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr class="bg-success">
+                        <th>Date</th>
+                        <th>Username</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <c:forEach items="${product.comment}" var="comment">
+                        <tr>
+                            <td>${comment.username}</td>
+                            <td>${comment.commentTitle}</td>
+                            <td>${comment.comment}</td>
+                            <td><a href="<spring:url value="/productList/viewProduct/${product.productId}" />"
+                            ><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a href="<spring:url value="/productList/viewProduct/deleteComment/${product.productId}" />"
+                                ><span class="glyphicon glyphicon-remove"></span></a>
+                                <a href="<spring:url value="/productList/viewProduct/editComment/${product.productId}" />"
+                                ><span class="glyphicon glyphicon-pencil"></span></a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+                <a href="<spring:url value="/productList/viewProduct/addComment" />" class="btn btn-primary">Add Comment</a>
+
+
             </div>
         </div>
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
 
         <script src="<c:url value="/resources/js/controller.js" /> "></script>
         <%@include file="/WEB-INF/views/template/footer.jsp"%>

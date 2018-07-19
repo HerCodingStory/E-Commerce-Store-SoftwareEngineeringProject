@@ -1,6 +1,7 @@
 package com.ebookstore.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,16 +11,18 @@ public class Rating implements Serializable
     @Id
     @GeneratedValue
     private int ratingId;
+
+    @Size(min=1, max=5)
     private int rating;
+
     private Date time;
-    private String ip;
 
     //private Customer customer;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="productId")
     private Product product;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="customerId")
     private Customer customer;
 
@@ -45,14 +48,6 @@ public class Rating implements Serializable
 
     public void setTime(Date time) {
         this.time = time;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
     }
 
     public Product getProduct() {

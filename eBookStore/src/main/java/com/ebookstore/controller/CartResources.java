@@ -75,6 +75,14 @@ public class CartResources
 
     }
 
+    @RequestMapping(value = "/change/{productId}", method = RequestMethod.PUT)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void changeQuantity (@PathVariable(value = "productId") int productId) {
+        CartItem cartItem = cartItemService.getCartItemByProductId(productId);
+        cartItem.setQuantity(cartItem.getCartItemId()+1);
+        cartItemService.addCartItem(cartItem);
+    }
+
     @RequestMapping(value = "/{cartId}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void clearCart(@PathVariable(value = "cartId") int cartId) {

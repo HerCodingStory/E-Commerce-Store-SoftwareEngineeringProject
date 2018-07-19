@@ -43,7 +43,6 @@
 
     <link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
 
-
 </head>
 <!-- NAVBAR
 ================================================== -->
@@ -73,6 +72,7 @@
                                 <li><a href="<c:url value="/productList/sortedPrice"/>">Sort By Price</a></li>
                                 <li><a href="#">Sort By Book Rating</a></li>
                                 <li><a href="<c:url value="/productList/sortedReleaseDate"/>">Sort By Release Date</a></li>
+                                <li><a href="<c:url value="/productList/sortedBookTopSellers"/>">Sort By Top Sellers</a></li>
                             </ul>
                         </li>
                         <li><a href="#AboutUs">About Us</a></li>

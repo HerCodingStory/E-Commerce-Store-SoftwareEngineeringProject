@@ -7,7 +7,7 @@
         var searchCondition = '${searchCondition}';
 
         $('.table').DataTable({
-            "lengthMenu": [[5,10,-1], [5,10, "All"]],
+            "lengthMenu": [[5,10,20,-1], [5,10,20, "All"]],
             "oSearch": {"sSearch": searchCondition}
         });
     });
@@ -28,12 +28,11 @@
                     <th>Photo Thumb</th>
                     <th>Product Name</th>
                     <th>Author's Name</th>
-                    <th>Category</th>
-                    <th>Condition</th>
+                    <th>Genre</th>
                     <th>Release Date</th>
                     <th>Rating</th>
                     <th>Price</th>
-                    <th></th>
+                    <th>Top Seller Status<th>
                 </tr>
             </thead>
             <c:forEach items="${products}" var="product">
@@ -42,10 +41,10 @@
                     <td>${product.productName}</td>
                     <td>${product.productAuthor}</td>
                     <td>${product.productCategory}</td>
-                    <td>${product.productCondition}</td>
                     <td>${product.productReleaseDate}</td>
                     <td>${product.rating.rating}</td>
                     <td>${product.productPrice} USD</td>
+                    <td>${product.topSellerStatus}</td>
                     <td><a href="<spring:url value="/productList/viewProduct/${product.productId}" />"
                     ><span class="glyphicon glyphicon-info-sign"></span></a></td>
                 </tr>

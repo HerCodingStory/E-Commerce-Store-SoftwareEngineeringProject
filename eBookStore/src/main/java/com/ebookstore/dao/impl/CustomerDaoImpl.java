@@ -5,6 +5,7 @@ import com.ebookstore.model.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
@@ -47,18 +48,6 @@ public class CustomerDaoImpl implements CustomerDao
         session.saveOrUpdate(customer);
         session.saveOrUpdate(newCart);
 
-        Rating newRating = new Rating();
-        newRating.setCustomer(customer);
-        customer.setRating(newRating);
-        session.saveOrUpdate(customer);
-        session.saveOrUpdate(newRating);
-
-        Comment newComment = new Comment();
-        newComment.setCustomer(customer);
-        customer.setComment(newComment);
-        session.saveOrUpdate(customer);
-        session.saveOrUpdate(newComment);
-
         session.flush();
     }
 
@@ -93,7 +82,9 @@ public class CustomerDaoImpl implements CustomerDao
     public void editCustomer(Customer customer)
     {
         Session session = sessionFactory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
         session.saveOrUpdate(customer);
+        tx.commit();
         session.flush();
     }
 

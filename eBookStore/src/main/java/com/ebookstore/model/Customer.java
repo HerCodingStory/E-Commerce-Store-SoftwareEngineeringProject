@@ -40,13 +40,13 @@ public class Customer implements Serializable
     @JoinColumn(name="creditCardId")
     private CreditCard creditCard;
 
-    @OneToOne
-    @JoinColumn(name="ratingId")
-    private Rating rating;
+    //@OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name="ratingId")
+   // private Rating rating;
 
-    @OneToOne
-    @JoinColumn(name="commentId")
-    private Comment comment;
+    //@OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name="commentId")
+    //private Comment comment;
 
     @OneToOne
     @JoinColumn(name = "cartId")
@@ -126,22 +126,6 @@ public class Customer implements Serializable
 
     public void setCreditCard(CreditCard creditcard) {
         this.creditCard = creditcard;
-    }
-
-    public Comment getComment() {
-        return comment;
-    }
-
-    public void setComment(Comment comment) {
-        this.comment = comment;
-    }
-
-    public Rating getRating() {
-        return rating;
-    }
-
-    public void setRating(Rating rating) {
-        this.rating = rating;
     }
 
     public Cart getCart() {

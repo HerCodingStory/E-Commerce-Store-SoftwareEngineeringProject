@@ -24,7 +24,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
-
 public class AdminController
 {
     private Path path;
@@ -61,24 +60,28 @@ public class AdminController
         return "customerManagement";
     }
 
-    @RequestMapping("/admin/product/addProduct")
+    @RequestMapping("/admin/productInventory/addProduct")
     public String addProduct(Model model)
     {
         Product product = new Product();
         product.setProductCondition("new");
         product.setProductStatus("active");
+        product.setTopSellerStatus("active");
 
         model.addAttribute("product", product);
 
         return "addProduct";
     }
 
-    @RequestMapping(value="/admin/product/addProduct", method = RequestMethod.POST)
+    @RequestMapping(value="/admin/productInventory/addProduct", method = RequestMethod.POST)
     public String addProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result, HttpServletRequest request)
     {
+        System.out.println("Hello");
         if(result.hasErrors()) {
+            System.out.println(result.getFieldError());
             return "addProduct";
         }
+        System.out.println("Bye");
 
         productService.addProduct(product);
 
@@ -98,7 +101,7 @@ public class AdminController
         return "redirect:/admin/productInventory";
     }
 
-    @RequestMapping("/admin/product/editProduct/{id}")
+    @RequestMapping("/admin/productInventory/editProduct/{id}")
     public String editProduct(@PathVariable("id") int id, Model model) {
         Product product = productService.getProductById(id);
 
@@ -107,7 +110,7 @@ public class AdminController
         return "editProduct";
     }
 
-    @RequestMapping(value="/admin/product/editProduct", method = RequestMethod.POST)
+    @RequestMapping(value="/admin/productInventory/editProduct", method = RequestMethod.POST)
     public String editProductPost(@Valid @ModelAttribute("product") Product product, BindingResult result,
                                   HttpServletRequest request) {
         if(result.hasErrors()) {
@@ -132,7 +135,7 @@ public class AdminController
         return "redirect:/admin/productInventory";
     }
 
-    @RequestMapping("/admin/product/deleteProduct/{id}")
+    @RequestMapping("/admin/productInventory/deleteProduct/{id}")
     public String deleteProduct(@PathVariable int id, Model model, HttpServletRequest request) {
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
         path = Paths.get(rootDirectory + "\\WEB-INF\\resources\\images\\" + id + ".png");
