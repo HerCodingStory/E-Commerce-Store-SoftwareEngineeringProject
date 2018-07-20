@@ -36,7 +36,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService
             grandTotal+=item.getTotalPrice();
         }
 
-        return Math.round(grandTotal * 100) / 100;
+        return grandTotal;
     }
 
 

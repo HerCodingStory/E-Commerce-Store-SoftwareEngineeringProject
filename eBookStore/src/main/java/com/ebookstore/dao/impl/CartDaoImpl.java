@@ -2,6 +2,7 @@ package com.ebookstore.dao.impl;
 
 import com.ebookstore.dao.CartDao;
 import com.ebookstore.model.Cart;
+import com.ebookstore.model.SavedItems;
 import com.ebookstore.service.CustomerOrderService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,6 +27,11 @@ public class CartDaoImpl implements CartDao
         return (Cart) session.get(Cart.class, cartId);
     }
 
+    public SavedItems getSavedItemsById (int SavedItemsId) {
+        Session session = sessionFactory.getCurrentSession();
+        return (SavedItems) session.get(SavedItems.class, SavedItemsId);
+    }
+
     public void update(Cart cart) {
         int cartId = cart.getCartId();
         double grandTotal = customerOrderService.getCustomerOrderGrandTotal(cartId);
@@ -33,6 +39,24 @@ public class CartDaoImpl implements CartDao
 
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(cart);
+    }
+
+    public void updateSavedItems(SavedItems savedItems) {
+        int savedItemsId = savedItems.getSavedItemsId();
+        double grandTotal = customerOrderService.getCustomerOrderGrandTotal(savedItemsId);
+        savedItems.setGrandTotal(grandTotal);
+
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(savedItems);
+    }
+
+    public SavedItems validateSavedItems(int savedItemsId) throws IOException {
+        SavedItems savedItems = getSavedItemsById(savedItemsId);
+        if(savedItems==null||savedItems.getSavedItems().size()==0) {
+            throw new IOException(savedItemsId+"");
+        }
+        updateSavedItems(savedItems);
+        return savedItems;
     }
 
     public Cart validate(int cartId) throws IOException {

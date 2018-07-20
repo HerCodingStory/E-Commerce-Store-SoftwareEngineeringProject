@@ -27,6 +27,7 @@ public class CartController
         // get cardId of that customer
         int cartId = customer.getCart().getCartId();
 
+
         // redirect website to that customer's card
         return "redirect:/customer/cart/"+ cartId;
     }

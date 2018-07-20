@@ -29,6 +29,11 @@
             <form:input path="customerEmail" id="email" class="form-Control" value="${customer.customerEmail}"/>
         </div>
 
+        <div class="form-group">
+            <label for="nickname">Nickname</label>
+            <form:input path="nickname" id="nickname" class="form-Control" value="${customer.nickname}"/>
+        </div>
+
         <h3>Login Info: </h3>
 
         <div class="form-group">
@@ -108,11 +113,6 @@
         <div class="form-group">
             <label for="shippingZip">Zipcode</label>
             <form:input path="shippingAddress.zipCode" id="shippingZip" class="form-Control" value="${customer.shippingAddress.zipCode}"/>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label" for="customerImage">Upload Picture</label>
-            <form:input id="customerImage" path="customerImage" type="file" class="form:input-large" />
         </div>
 
         <br><br>

@@ -25,6 +25,10 @@ public class CustomerDaoImpl implements CustomerDao
 
         customer.getShippingAddress().setCustomer(customer);
         customer.getCreditCard().setCustomer(customer);
+        if (customer.getNickname().isEmpty())
+        {
+            customer.setNickname("Anonymous");
+        }
 
         session.saveOrUpdate(customer);
         session.saveOrUpdate(customer.getShippingAddress());
@@ -47,6 +51,12 @@ public class CustomerDaoImpl implements CustomerDao
         customer.setCart(newCart);
         session.saveOrUpdate(customer);
         session.saveOrUpdate(newCart);
+
+        SavedItems newItems = new SavedItems();
+        newItems.setCustomer(customer);
+        customer.setSavedItems(newItems);
+        session.saveOrUpdate(customer);
+        session.saveOrUpdate(newItems);
 
         session.flush();
     }
@@ -82,9 +92,30 @@ public class CustomerDaoImpl implements CustomerDao
     public void editCustomer(Customer customer)
     {
         Session session = sessionFactory.getCurrentSession();
-        Transaction tx = session.beginTransaction();
+
+        customer.getShippingAddress().setShippingAddressId(customer.getCustomerId());
+        customer.getCreditCard().setCreditCardId(customer.getCustomerId());
+        customer.getShippingAddress().setCustomer(customer);
+        customer.getCreditCard().setCustomer(customer);
+
         session.saveOrUpdate(customer);
-        tx.commit();
+        session.saveOrUpdate(customer.getShippingAddress());
+        session.saveOrUpdate(customer.getCreditCard());
+
+        Cart newCart = new Cart();
+        newCart.setCartId(customer.getCustomerId());
+        newCart.setCustomer(customer);
+        customer.setCart(newCart);
+        session.saveOrUpdate(customer);
+        session.saveOrUpdate(newCart);
+
+        SavedItems newItems = new SavedItems();
+        newItems.setSavedItemsId(customer.getCustomerId());
+        newItems.setCustomer(customer);
+        customer.setSavedItems(newItems);
+        session.saveOrUpdate(customer);
+        session.saveOrUpdate(newItems);
+
         session.flush();
     }
 

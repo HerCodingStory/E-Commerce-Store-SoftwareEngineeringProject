@@ -24,6 +24,8 @@ public class Customer implements Serializable
     private String customerEmail;
     private String customerPhone;
 
+    private String nickname;
+
     @NotEmpty (message = "The customer username must not be null.")
     private String username;
 
@@ -48,13 +50,16 @@ public class Customer implements Serializable
     //@JoinColumn(name="commentId")
     //private Comment comment;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cartId")
     @JsonIgnore
     private Cart cart;
 
-    @Transient
-    private MultipartFile customerImage;
+    @OneToOne
+    @JoinColumn(name = "savedItemsId")
+    @JsonIgnore
+    private SavedItems savedItems;
+
 
     public int getCustomerId() {
         return customerId;
@@ -136,12 +141,20 @@ public class Customer implements Serializable
         this.cart = cart;
     }
 
-    public MultipartFile getCustomerImage() {
-        return customerImage;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setCustomerImage(MultipartFile customerImage) {
-        this.customerImage = customerImage;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public SavedItems getSavedItems() {
+        return savedItems;
+    }
+
+    public void setSavedItems(SavedItems savedItems) {
+        this.savedItems = savedItems;
     }
 }
 

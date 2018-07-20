@@ -20,6 +20,11 @@ public class CartItem implements Serializable
     private Cart cart;
 
     @ManyToOne
+    @JoinColumn(name = "savedItemsId")
+    @JsonIgnore
+    private SavedItems savedItems;
+
+    @ManyToOne
     @JoinColumn(name = "productId")
     private Product product;
 
@@ -64,5 +69,13 @@ public class CartItem implements Serializable
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public SavedItems getSavedItems() {
+        return savedItems;
+    }
+
+    public void setSavedItems(SavedItems savedItems) {
+        this.savedItems = savedItems;
     }
 }

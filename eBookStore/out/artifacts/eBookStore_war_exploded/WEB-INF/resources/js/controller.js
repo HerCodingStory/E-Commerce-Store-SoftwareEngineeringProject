@@ -8,17 +8,34 @@ cartApp.controller("cartCtrl", function ($scope, $http){
         });
     };
 
+    $scope.refreshSavedItems = function () {
+        $http.get('/eBookStore/rest/savedItems/'+$scope.savedItemsId).success(function (data) {
+            $scope.savedItems=data;
+        });
+    };
+
     $scope.clearCart = function () {
         $http.delete('/eBookStore/rest/cart/'+$scope.cartId).success($scope.refreshCart());
     };
 
-    $scope.initCartId = function (cartId) {
+    $scope.initCartId = function (cartId, savedItemsId) {
+        console.log("maaaa");
         $scope.cartId = cartId;
+        $scope.savedItemsId = savedItemsId;
         $scope.refreshCart(cartId);
+        $scope.refreshSavedItems(savedItemsId)
+
     };
 
     $scope.addToCart = function (productId) {
         $http.put('/eBookStore/rest/cart/add/'+productId).success(function () {
+            alert("Product successfully added to the cart!")
+        });
+    };
+
+    $scope.saveItems = function (productId) {
+        console.log("HEy");
+        $http.put('/eBookStore/rest/savedItems/save/'+productId).success(function () {
             alert("Product successfully added to the cart!")
         });
     };
@@ -39,6 +56,13 @@ cartApp.controller("cartCtrl", function ($scope, $http){
 
     $scope.removeFromCart = function (productId) {
         $http.put('/eBookStore/rest/cart/remove/'+productId).success(function (data) {
+            $scope.refreshCart();
+        });
+    };
+
+    $scope.removeFromSave = function (productId) {
+        console.log("HEyyyy");
+        $http.put('/eBookStore/rest/savedItems/removeSaved/'+productId).success(function (data) {
             $scope.refreshCart();
         });
     };

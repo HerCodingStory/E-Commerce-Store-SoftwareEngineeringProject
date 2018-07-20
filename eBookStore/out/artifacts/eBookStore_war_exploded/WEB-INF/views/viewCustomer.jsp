@@ -13,12 +13,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <c:if test="${customer.customerImage == null}">
-                        <img src="<c:url value="/resources/images/avatar.png" /> " alt="image" style="width:75%"/>
-                    </c:if>
-                    <c:if test="${customer.customerImage != null}">
-                        <img src="<c:url value="/resources/images/${customer.customerId}.png" /> " alt="image" style="width:75%"/>
-                    </c:if>
+                    <img src="<c:url value="/resources/images/avatar.png" /> " alt="image" style="width:75%"/>
                 </div>
 
                 <div class="col-md-5">
@@ -35,6 +30,9 @@
                     </p>
                     <p>
                         <strong>Email:</strong> ${customer.customerEmail}
+                    </p>
+                    <p>
+                        <strong>Nickname:</strong> ${customer.nickname}
                     </p>
                     <p>
                         <strong>Profile Status: </strong><c:if test="${customer.enabled == false}">Deactivate</c:if><c:if test="${customer.enabled == true}">Active</c:if>
