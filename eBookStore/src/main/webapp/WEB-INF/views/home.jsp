@@ -39,9 +39,9 @@
             <img class="third-slide" src="https://knoxseminary.edu/wp-content/uploads/2014/09/Books-Background-1.jpg" alt="Third slide">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>Top Rated Books</h1>
+                    <h1>Top Sellers Books</h1>
                     <p>Don't forget to look at the bestsellers books of the year!</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse Bestsellers</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="<c:url value="/productList/sortedBookTopSellers"/>" role="button">Browse Bestsellers</a></p>
                 </div>
             </div>
         </div>

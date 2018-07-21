@@ -55,12 +55,6 @@ public class Customer implements Serializable
     @JsonIgnore
     private Cart cart;
 
-    @OneToOne
-    @JoinColumn(name = "savedItemsId")
-    @JsonIgnore
-    private SavedItems savedItems;
-
-
     public int getCustomerId() {
         return customerId;
     }
@@ -149,12 +143,5 @@ public class Customer implements Serializable
         this.nickname = nickname;
     }
 
-    public SavedItems getSavedItems() {
-        return savedItems;
-    }
-
-    public void setSavedItems(SavedItems savedItems) {
-        this.savedItems = savedItems;
-    }
 }
 

@@ -1,7 +1,9 @@
 package com.ebookstore.controller;
 
+
 import com.ebookstore.model.Cart;
 import com.ebookstore.model.Customer;
+import com.ebookstore.model.Users;
 import com.ebookstore.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +32,9 @@ public class AccountController
 
     // This methods returns the profile page of the login user
     @RequestMapping("/account/viewCustomer/")
-    public String getUserName(@AuthenticationPrincipal User activeUser,  Model model)
+    public String getUserName(@AuthenticationPrincipal User activeUser, Model model)
     {
+        System.out.println(activeUser.toString());
         // get customer's username of currently active user
         Customer customer = customerService.getCustomerByUsername(activeUser.getUsername());
         // add customer to model
@@ -43,8 +47,6 @@ public class AccountController
     @RequestMapping("/account/viewCustomer/editCustomer/{id}")
     public String editCustomer(@PathVariable("id") int id, Model model) {
         Customer customer = customerService.getCustomerById(id);
-
-        Cart cart = new Cart();
 
         model.addAttribute("customer", customer);
 
@@ -64,6 +66,6 @@ public class AccountController
 
         customerService.editCustomer(customer);
 
-        return "redirect:/account/viewCustomer/";
+        return "redirect:/";
     }
 }

@@ -12,6 +12,8 @@ import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,24 +37,18 @@ public class CartResources
         return cartService.getCartById(cartId);
     }
 
-    @RequestMapping("/rest/savedItems/{savedItemsId}")
-    public @ResponseBody
-    SavedItems getSavedItemsById (@PathVariable(value = "savedItemsId") int savedItemsId) {
-        return cartService.getSavedItemsById(savedItemsId);
-    }
-
     @RequestMapping(value = "/rest/savedItems/save/{productId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void saveItems(@PathVariable(value ="productId") int productId, @AuthenticationPrincipal User activeUser) {
-
+        System.out.println("Hello");
         Customer customer = customerService.getCustomerByUsername(activeUser.getUsername());
-        SavedItems cart = customer.getSavedItems();
+        Cart cart = customer.getCart();
         Product product = productService.getProductById(productId);
-        List<CartItem> savedItems = cart.getSavedItems();
+        List<CartItem> currentCart = cart.getCartItems();
 
-        for (int i=0; i<savedItems.size(); i++) {
-            if(product.getProductId()==savedItems.get(i).getProduct().getProductId()){
-                CartItem cartItem = savedItems.get(i);
+        for (int i=0; i<currentCart.size(); i++) {
+            if(product.getProductId()==currentCart.get(i).getProduct().getProductId()){
+                CartItem cartItem = currentCart.get(i);
                 cartItem.setQuantity(cartItem.getQuantity()+1);
                 cartItem.setTotalPrice(product.getProductPrice()*cartItem.getQuantity());
                 cartItemService.saveCartItem(cartItem);
@@ -64,8 +60,10 @@ public class CartResources
         CartItem cartItem = new CartItem();
         cartItem.setProduct(product);
         cartItem.setQuantity(1);
+        System.out.println("This is saveditems before " + customer.getCart().getSavedItems().toString());
         cartItem.setTotalPrice(product.getProductPrice()*cartItem.getQuantity());
-        cartItem.setSavedItems(cart);
+        cartItem.setCart(cart);
+        System.out.println("This is saveditems before " + customer.getCart().getSavedItems().toString());
         cartItemService.saveCartItem(cartItem);
     }
 

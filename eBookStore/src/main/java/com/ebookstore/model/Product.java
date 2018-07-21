@@ -1,5 +1,7 @@
 package com.ebookstore.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
@@ -7,6 +9,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 // adds this class to database. An instance of this corresponds to a row
@@ -35,9 +38,10 @@ public class Product implements Serializable
     @JoinColumn(name="ratingId")
     private Rating rating;
 
-    @OneToOne
-    @JoinColumn(name="commentId")
-    private Comment comment;
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    //@Column(name="commentId")
+    private List<Comment> comment;
 
     @Transient
     private MultipartFile productImage;
@@ -140,21 +144,6 @@ public class Product implements Serializable
         this.productImage = productImage;
     }
 
-    public Rating getRating() {
-        return rating;
-    }
-
-    public void setRating(Rating rating) {
-        this.rating = rating;
-    }
-
-    public Comment getComment() {
-        return comment;
-    }
-
-    public void setComment(Comment comment) {
-        this.comment = comment;
-    }
 
     public String getTopSellerStatus() {
         return topSellerStatus;
@@ -170,5 +159,21 @@ public class Product implements Serializable
 
     public void setProductAuthorBio(String productAuthorBio) {
         this.productAuthorBio = productAuthorBio;
+    }
+
+    public List<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<Comment> comment) {
+        this.comment = comment;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
     }
 }

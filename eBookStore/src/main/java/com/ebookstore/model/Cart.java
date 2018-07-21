@@ -19,8 +19,8 @@ public class Cart implements Serializable
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CartItem> cartItems;
 
-    //@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //private List<CartItem> savedItems;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<CartItem> savedItems;
 
     @OneToOne
     @JoinColumn(name = "customerId")
@@ -61,4 +61,12 @@ public class Cart implements Serializable
         this.grandTotal = grandTotal;
     }
 
+
+    public List<CartItem> getSavedItems() {
+        return savedItems;
+    }
+
+    public void setSavedItems(List<CartItem> savedItems) {
+        this.savedItems = savedItems;
+    }
 }

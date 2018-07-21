@@ -7,10 +7,19 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import sun.plugin.liveconnect.SecurityContextHelper;
 
+import java.security.Principal;
+import java.security.Security;
 import java.util.List;
 
 @Repository
@@ -51,12 +60,6 @@ public class CustomerDaoImpl implements CustomerDao
         customer.setCart(newCart);
         session.saveOrUpdate(customer);
         session.saveOrUpdate(newCart);
-
-        SavedItems newItems = new SavedItems();
-        newItems.setCustomer(customer);
-        customer.setSavedItems(newItems);
-        session.saveOrUpdate(customer);
-        session.saveOrUpdate(newItems);
 
         session.flush();
     }
@@ -102,19 +105,14 @@ public class CustomerDaoImpl implements CustomerDao
         session.saveOrUpdate(customer.getShippingAddress());
         session.saveOrUpdate(customer.getCreditCard());
 
+        //session.saveOrUpdate(customer.getUsername(), customer);
+
         Cart newCart = new Cart();
         newCart.setCartId(customer.getCustomerId());
         newCart.setCustomer(customer);
         customer.setCart(newCart);
         session.saveOrUpdate(customer);
         session.saveOrUpdate(newCart);
-
-        SavedItems newItems = new SavedItems();
-        newItems.setSavedItemsId(customer.getCustomerId());
-        newItems.setCustomer(customer);
-        customer.setSavedItems(newItems);
-        session.saveOrUpdate(customer);
-        session.saveOrUpdate(newItems);
 
         session.flush();
     }

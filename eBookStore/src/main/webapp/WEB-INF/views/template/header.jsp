@@ -80,7 +80,7 @@
                     <ul class="nav navbar-nav pull-right">
                         <c:if test="${pageContext.request.userPrincipal.name != null}">
                             <c:if test="${pageContext.request.userPrincipal.name != 'admin'}">
-                            <li><a href="<c:url value="/account/viewCustomer/" />">Welcome: ${pageContext.request.userPrincipal.name}</a></li>
+                            <li><a href="<c:url value="/account/viewCustomer/" />">Profile</a></li>
                             </c:if>
                             <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
                             <c:if test="${pageContext.request.userPrincipal.name != 'admin'}">

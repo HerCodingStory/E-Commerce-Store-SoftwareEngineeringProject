@@ -10,22 +10,22 @@
             <p class="lead">Fill the below information to add a comment:</p>
         </div>
 
-        <form:form action="${pageContext.request.contextPath}/productList/viewProduct/addComment" method="post"
+        <form:form action="${pageContext.request.contextPath}/productList/viewProduct/addComment/${comment.product.productId}" method="post"
                    commandName="comment">
 
             <div class="form-group">
                 <label for="title">Comment Title</label> <form:errors path="commentTitle" cssStyle="color: #ff0000;" />
-                <form:input path="commentTitle" id="title" class="form-Control"/>
+                <form:input path="commentTitle" id="title" class="form-Control" maxlength="20"/>
             </div>
 
             <div class="form-group">
-                <label for="username">Username</label> <form:errors path="username" cssStyle="color: #ff0000;" />
-                <form:input path="username" id="username" class="form-Control"/>
+                <label for="nickname">Nickname</label>
+                <form:input path="nickname" id="nickname" class="form-Control" value="${comment.nickname}" maxlength="10"/>
             </div>
 
             <div class="form-group">
-                <label for="content">Comment Content</label>
-                <form:textarea path="comment" id="content" class="form-Control"/>
+                <label for="content">Comment Content (250 characters max)</label>
+                <form:textarea path="comment" id="content" class="form-Control" maxlength="250"/>
             </div>
 
         <br><br>

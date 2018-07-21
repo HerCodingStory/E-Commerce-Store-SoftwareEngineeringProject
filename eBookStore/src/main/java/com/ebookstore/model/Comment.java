@@ -15,7 +15,7 @@ public class Comment implements Serializable
     @Column(nullable = false, length = 20)
     private String commentTitle;
 
-    private String username;
+    private String nickname;
 
     @Column(nullable = false, length = 500)
     private String comment;
@@ -27,9 +27,9 @@ public class Comment implements Serializable
     @JoinColumn(name="productId")
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name="customerId")
-    private Customer customer;
+    //@ManyToOne
+    //@JoinColumn(name="customerId")
+    //private Customer customer;
 
     public int getCommentId() {
         return commentId;
@@ -55,14 +55,6 @@ public class Comment implements Serializable
         this.product = product;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public Date getTime() {
         return time;
     }
@@ -79,11 +71,11 @@ public class Comment implements Serializable
         this.commentTitle = commentTitle;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

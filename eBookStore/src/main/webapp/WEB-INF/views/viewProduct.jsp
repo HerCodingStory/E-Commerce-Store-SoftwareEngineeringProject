@@ -73,17 +73,14 @@
                     </p>
 
                     <p>
-                        <form id="form" commmandName="interceptedPath" method="post">
-                            <strong>Rating</strong> :
-                            <input type="radio" name="rating" value="1" />
-                            <input type="radio" name="rating" value="2" />
-                            <input type="radio" name="rating" value="3" />
-                            <input type="radio" name="rating" value="4" />
-                            <input type="radio" name="rating" value="5" />
-                        </form>
-                    </p>
-                    <p>
-                        <strong>Comments</strong> :
+                    <form id="form" commmandName="interceptedPath" method="post">
+                        <strong>Rating</strong> :
+                        <input type="radio" name="rating" value="1" />
+                        <input type="radio" name="rating" value="2" />
+                        <input type="radio" name="rating" value="3" />
+                        <input type="radio" name="rating" value="4" />
+                        <input type="radio" name="rating" value="5" />
+                    </form>
                     </p>
 
                 </div>
@@ -95,26 +92,30 @@
                         <th>Username</th>
                         <th>Title</th>
                         <th>Content</th>
-                        <th></th>
+                        <%--<th></th>--%>
                     </tr>
                     </thead>
+
                     <c:forEach items="${product.comment}" var="comment">
                         <tr>
-                            <td>${comment.username}</td>
+                            <td>${comment.time}</td>
+                            <td>${comment.nickname}</td>
                             <td>${comment.commentTitle}</td>
                             <td>${comment.comment}</td>
-                            <td><a href="<spring:url value="/productList/viewProduct/${product.productId}" />"
-                            ><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a href="<spring:url value="/productList/viewProduct/deleteComment/${product.productId}" />"
-                                ><span class="glyphicon glyphicon-remove"></span></a>
-                                <a href="<spring:url value="/productList/viewProduct/editComment/${product.productId}" />"
-                                ><span class="glyphicon glyphicon-pencil"></span></a>
-                            </td>
+                            <%--<td>--%>
+                                <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>
+                                    <%--<a href="<spring:url value="/productList/viewProduct/deleteComment/${product.productId}" />"--%>
+                                    <%--><span class="glyphicon glyphicon-remove"></span></a>--%>
+                                    <%--<a href="<spring:url value="/productList/viewProduct/editComment/${product.productId}" />"--%>
+                                    <%--><span class="glyphicon glyphicon-pencil"></span></a>--%>
+                                <%--</c:if>--%>
+                            <%--</td>--%>
                         </tr>
                     </c:forEach>
                 </table>
-                <a href="<spring:url value="/productList/viewProduct/addComment" />" class="btn btn-primary">Add Comment</a>
-
+                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                    <a href="<spring:url value="/productList/viewProduct/addComment/${product.productId}" />" class="btn btn-primary">Add Comment</a>
+                </c:if>
 
             </div>
         </div>

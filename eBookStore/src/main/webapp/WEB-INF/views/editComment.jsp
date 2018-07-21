@@ -16,17 +16,17 @@
 
         <div class="form-group">
             <label for="title">Title</label>
-            <form:input path="commentTitle" id="title" class="form-Control" value="${comment.commentTitle}"/>
+            <form:input path="commentTitle" id="title" class="form-Control" value="${comment.commentTitle}" maxlength="20"/>
         </div>
 
         <div class="form-group">
-            <label for="username">Username</label>
-            <form:input path="username" id="username" class="form-Control" value="${comment.username}"/>
+            <label for="nickname">Nickname</label>
+            <form:input path="nickname" id="nickname" class="form-Control" value="${comment.nickname} maxlength="10""/>
         </div>
 
         <div class="form-group">
             <label for="content">Comment Content</label>
-            <form:textarea path="comment" id="content" class="form-Control" value="${comment.comment}"/>
+            <form:textarea path="comment" id="content" class="form-Control" value="${comment.comment}" maxlength="250"/>
         </div>
 
         <br><br>

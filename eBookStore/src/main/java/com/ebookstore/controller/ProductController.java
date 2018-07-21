@@ -1,11 +1,15 @@
 package com.ebookstore.controller;
 
+import com.ebookstore.dao.CustomerDao;
 import com.ebookstore.dao.ProductDao;
 import com.ebookstore.model.Comment;
 import com.ebookstore.model.Customer;
 import com.ebookstore.model.Product;
 import com.ebookstore.service.CommentService;
+import com.ebookstore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 // This controller is in charge of handling any events that control products
 @Controller
@@ -25,7 +30,13 @@ public class ProductController
     private ProductDao productDao;
 
     @Autowired
+    private CustomerDao customerDao;
+
+    @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private ProductService productService;
 
     // This method shows the details of a specific product
     @RequestMapping("/productList/viewProduct/{productId}")
@@ -41,16 +52,16 @@ public class ProductController
         return "viewProduct";
     }
 
-    @RequestMapping("/productList/viewProduct/addComment")
-    public String addComment(Model model)
+    @RequestMapping("/productList/viewProduct/addComment/{productId}")
+    public String addComment(@PathVariable(value = "productId")  int productId, Model model)
     {
         Comment comment = new Comment();
 
-        //Product product = new Product();
+        Product product = new Product();
 
         //Customer customer = new Customer();
 
-        //comment.setProduct(product);
+        comment.setProduct(productService.getProductById(productId));
         //comment.setCustomer(customer);
 
         model.addAttribute("comment", comment);
@@ -58,8 +69,8 @@ public class ProductController
         return "addComment";
     }
 
-    @RequestMapping(value="/productList/viewProduct/addComment", method = RequestMethod.POST)
-    public String addCommentPost(@Valid @ModelAttribute("comment") Comment comment, BindingResult result, HttpServletRequest request)
+    @RequestMapping(value="/productList/viewProduct/addComment/{productId}", method = RequestMethod.POST)
+    public String addCommentPost(@ModelAttribute("productId") int productId,@Valid @ModelAttribute("comment") Comment comment, BindingResult result, HttpServletRequest request)
     {
 
         if(result.hasErrors()) {
@@ -67,9 +78,17 @@ public class ProductController
             return "addComment";
         }
 
+        Product product = productService.getProductById(productId);
+
+        List<Comment> commentList = product.getComment();
+        commentList.add(comment);
+
+        product.setComment(commentList);
+        comment.setProduct(productService.getProductById(productId));
+        productService.addProduct(product);
         commentService.addComment(comment);
 
-        return "redirect:/productList/viewProduct/{productId}";
+        return "redirect:/productList/viewProduct/"+productId;
     }
 
     @RequestMapping("/productList/viewProduct/editComment/{id}")

@@ -64,7 +64,7 @@
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
-                    <tr ng-repeat = "item2 in savedItems.cartItems">
+                    <tr ng-repeat = "item2 in cart.savedItems">
                         <td>{{item2.product.productName}}</td>
                         <td>{{item2.product.productPrice}}</td>
                         <td>{{item2.quantity}}</td>
