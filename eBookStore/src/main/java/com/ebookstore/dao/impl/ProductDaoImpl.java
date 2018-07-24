@@ -23,6 +23,10 @@ public class ProductDaoImpl implements ProductDao
     public void addProduct(Product product)
     {
         Session session = sessionFactory.getCurrentSession();
+//
+//        Rating rating = new Rating();
+//        rating.setProduct(product);
+//        rating.setRatingId(product.getProductId());
 
         session.saveOrUpdate(product);
         session.flush();
@@ -110,16 +114,16 @@ public class ProductDaoImpl implements ProductDao
 
 
     // Book Rating System is not done yet
-    /*
+
     public List<Product> sortBooksByRating()
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Product ORDER BY rating DESC");
+        Query query = session.createQuery("FROM Rating ORDER BY Rating DESC");
         List<Product> orderedProducts = ((Query) query).list();
         session.flush();
 
         return orderedProducts;
-    }*/
+    }
 
 
 

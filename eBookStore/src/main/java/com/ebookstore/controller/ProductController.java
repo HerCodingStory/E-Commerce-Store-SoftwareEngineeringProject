@@ -164,9 +164,8 @@ public class ProductController
         return "sortedBooks";
     }
 
-    // Book Rating system is not implemented yet
     // This method returns a list sorted by rating
-    /*
+
     @RequestMapping("/productList/sortedBookRating")
     public String sortByBookRating(Model model)
     {
@@ -178,7 +177,7 @@ public class ProductController
 
         // view products sorted by rating
         return "sortedBooks";
-    }*/
+    }
 
 
     @RequestMapping("/productList/sortedBookTopSellers")
