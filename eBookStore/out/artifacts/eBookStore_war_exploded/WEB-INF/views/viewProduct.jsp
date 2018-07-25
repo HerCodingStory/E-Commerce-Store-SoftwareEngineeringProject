@@ -2,6 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@include file="/WEB-INF/views/template/header.jsp"%>
 
+
+
 <div class="container-wrapper">
     <div class="container">
         <div class="page-header">
@@ -13,7 +15,13 @@
         <div class="container" ng-app = "cartApp">
             <div class="row">
                 <div class="col-md-5">
-                    <img src="<c:url value="/resources/images/${product.productId}.png" /> " alt="image" style="width:75%"/>
+                    <img id="myImg" src="<c:url value="/resources/images/${product.productId}.png" /> " alt="${product.productName}" style="width:75%"/>
+                </div>
+
+                <div id="myModal" class="modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="img01">
+                    <div id="caption"></div>
                 </div>
 
                 <div class="col-md-5">
@@ -44,6 +52,51 @@
                     <p>
                         <strong>Unit in Stock</strong> : ${product.unitInStock}
                     </p>
+                    <p>
+                        <strong>Rating</strong> :
+                        <c:if test="${product.rating == 0.0}">
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </c:if>
+                        <c:if test="${product.rating == 1.0}">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </c:if>
+                        <c:if test="${product.rating == 2.0}">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </c:if>
+                        <c:if test="${product.rating == 3.0}">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </c:if>
+                        <c:if test="${product.rating == 4.0}">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                        </c:if>
+                        <c:if test="${product.rating == 5.0}">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                        </c:if>
+                    </p>
                     <h4>
                         <strong>Price</strong> : $${product.productPrice}
                     </h4>
@@ -72,17 +125,6 @@
                         </c:if>
                     </p>
 
-                    <p>
-                    <form id="form" commmandName="interceptedPath" method="post">
-                        <strong>Rating</strong> :
-                        <input type="radio" name="rating" value="1" />
-                        <input type="radio" name="rating" value="2" />
-                        <input type="radio" name="rating" value="3" />
-                        <input type="radio" name="rating" value="4" />
-                        <input type="radio" name="rating" value="5" />
-                    </form>
-                    </p>
-
                 </div>
 
                 <table class="table table-striped table-hover">
@@ -91,6 +133,7 @@
                         <th>Date</th>
                         <th>Username</th>
                         <th>Title</th>
+                        <th>Rating</th>
                         <th>Content</th>
                         <%--<th></th>--%>
                     </tr>
@@ -101,6 +144,7 @@
                             <td>${comment.time}</td>
                             <td>${comment.nickname}</td>
                             <td>${comment.commentTitle}</td>
+                            <td>${comment.rating}</td>
                             <td>${comment.comment}</td>
                             <%--<td>--%>
                                 <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>
@@ -121,6 +165,27 @@
         </div>
 
         <script>
+            // Get the modal
+            var modal = document.getElementById('myModal');
+
+            // Get the image and insert it inside the modal - use its "alt" text as a caption
+            var img = document.getElementById('myImg');
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
             $(document).ready(function(){
                 $('[data-toggle="tooltip"]').tooltip();
             });

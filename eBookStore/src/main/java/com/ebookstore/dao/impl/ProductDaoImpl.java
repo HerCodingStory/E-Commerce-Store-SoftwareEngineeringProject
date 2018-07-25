@@ -110,7 +110,7 @@ public class ProductDaoImpl implements ProductDao
 
 
     // Book Rating System is not done yet
-    /*
+
     public List<Product> sortBooksByRating()
     {
         Session session = sessionFactory.getCurrentSession();
@@ -119,7 +119,7 @@ public class ProductDaoImpl implements ProductDao
         session.flush();
 
         return orderedProducts;
-    }*/
+    }
 
 
 

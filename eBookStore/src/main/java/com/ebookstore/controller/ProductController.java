@@ -79,6 +79,15 @@ public class ProductController
         }
 
         Product product = productService.getProductById(productId);
+        //
+        double rating = product.getNumrating();
+        rating++;
+        product.setNumrating(rating);
+        double totalRating = product.getTotal_rating();
+        totalRating = totalRating + comment.getRating();
+        product.setTotal_rating(totalRating);
+        product.setRating();
+        //
 
         List<Comment> commentList = product.getComment();
         commentList.add(comment);
@@ -164,9 +173,8 @@ public class ProductController
         return "sortedBooks";
     }
 
-    // Book Rating system is not implemented yet
     // This method returns a list sorted by rating
-    /*
+
     @RequestMapping("/productList/sortedBookRating")
     public String sortByBookRating(Model model)
     {
@@ -178,7 +186,7 @@ public class ProductController
 
         // view products sorted by rating
         return "sortedBooks";
-    }*/
+    }
 
 
     @RequestMapping("/productList/sortedBookTopSellers")

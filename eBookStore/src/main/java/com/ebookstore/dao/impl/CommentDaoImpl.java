@@ -22,10 +22,7 @@ public class CommentDaoImpl implements CommentDao
 
     public void addComment(Comment comment) {
         Session session = sessionFactory.getCurrentSession();
-        if (comment.getNickname().isEmpty())
-        {
-            comment.setNickname("Anonymous");
-        }
+
         session.saveOrUpdate(comment);
         session.flush();
     }
