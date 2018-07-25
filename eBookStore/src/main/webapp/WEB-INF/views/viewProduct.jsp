@@ -52,6 +52,51 @@
                     <p>
                         <strong>Unit in Stock</strong> : ${product.unitInStock}
                     </p>
+                    <p>
+                        <strong>Rating</strong> :
+                        <c:if test="${product.rating == 0.0}">
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </c:if>
+                        <c:if test="${product.rating == 1.0}">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </c:if>
+                        <c:if test="${product.rating == 2.0}">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </c:if>
+                        <c:if test="${product.rating == 3.0}">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </c:if>
+                        <c:if test="${product.rating == 4.0}">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                        </c:if>
+                        <c:if test="${product.rating == 5.0}">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                        </c:if>
+                    </p>
                     <h4>
                         <strong>Price</strong> : $${product.productPrice}
                     </h4>
@@ -80,17 +125,6 @@
                         </c:if>
                     </p>
 
-                    <p>
-                    <form id="form" commmandName="interceptedPath" method="post">
-                        <strong>Rating</strong> :
-                        <input type="radio" name="rating" value="1" />
-                        <input type="radio" name="rating" value="2" />
-                        <input type="radio" name="rating" value="3" />
-                        <input type="radio" name="rating" value="4" />
-                        <input type="radio" name="rating" value="5" />
-                    </form>
-                    </p>
-
                 </div>
 
                 <table class="table table-striped table-hover">
@@ -99,6 +133,7 @@
                         <th>Date</th>
                         <th>Username</th>
                         <th>Title</th>
+                        <th>Rating</th>
                         <th>Content</th>
                         <%--<th></th>--%>
                     </tr>
@@ -109,6 +144,7 @@
                             <td>${comment.time}</td>
                             <td>${comment.nickname}</td>
                             <td>${comment.commentTitle}</td>
+                            <td>${comment.rating}</td>
                             <td>${comment.comment}</td>
                             <%--<td>--%>
                                 <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>

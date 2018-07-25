@@ -15,7 +15,7 @@ public class Comment implements Serializable
     @Column(nullable = false, length = 20)
     private String commentTitle;
 
-    private String nickname;
+    private String nickname = "Anonymous";
 
     @Column(nullable = false, length = 500)
     private String comment;
@@ -26,6 +26,9 @@ public class Comment implements Serializable
     @ManyToOne
     @JoinColumn(name="productId")
     private Product product;
+
+    @Column(nullable = false, length = 20)
+    private double rating = 0.0;
 
     //@ManyToOne
     //@JoinColumn(name="customerId")
@@ -77,5 +80,13 @@ public class Comment implements Serializable
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }

@@ -42,7 +42,7 @@
                     <td>${product.productAuthor}</td>
                     <td>${product.productCategory}</td>
                     <td>${product.productReleaseDate}</td>
-                    <td></td>
+                    <td>${product.rating}</td>
                     <td>${product.productPrice} USD</td>
                     <td>${product.topSellerStatus}</td>
                     <td><a href="<spring:url value="/productList/viewProduct/${product.productId}" />"

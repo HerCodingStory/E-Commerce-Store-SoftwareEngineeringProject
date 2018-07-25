@@ -79,6 +79,15 @@ public class ProductController
         }
 
         Product product = productService.getProductById(productId);
+        //
+        double rating = product.getNumrating();
+        rating++;
+        product.setNumrating(rating);
+        double totalRating = product.getTotal_rating();
+        totalRating = totalRating + comment.getRating();
+        product.setTotal_rating(totalRating);
+        product.setRating();
+        //
 
         List<Comment> commentList = product.getComment();
         commentList.add(comment);

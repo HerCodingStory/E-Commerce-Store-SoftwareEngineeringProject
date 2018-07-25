@@ -34,9 +34,12 @@ public class Product implements Serializable
     private String productPublisher;
     private String topSellerStatus;
 
-    @OneToOne
-    @JoinColumn(name="ratingId")
-    private Rating rating;
+    @JoinColumn(name="rating") // average of total ratings
+    private double rating = 0.0;
+    @JoinColumn(name="totalrating") // total rating
+    private double total_rating= 0.0;
+    @JoinColumn(name="#ofrating") // number of ratings
+    private double numrating = 0.0;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
@@ -169,11 +172,17 @@ public class Product implements Serializable
         this.comment = comment;
     }
 
-    public Rating getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(Rating rating) {
-        this.rating = rating;
-    }
+    public void setRating() { this.rating = total_rating/numrating; }
+
+    public double getTotal_rating() { return total_rating; }
+
+    public void setTotal_rating(double total_rating) { this.total_rating = total_rating; }
+
+    public double getNumrating() { return numrating; }
+
+    public void setNumrating(double numrating) { this.numrating = numrating; }
 }

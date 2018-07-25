@@ -11,6 +11,11 @@
 <html>
 
 <style>
+
+    .checked {
+        color: orange;
+    }
+
     #myImg {
         border-radius: 5px;
         cursor: pointer;
@@ -159,7 +164,7 @@
                                 <li><a href="<c:url value="/productList/sortedTitle"/>">Sort By Title</a></li>
                                 <li><a href="<c:url value="/productList/sortedAuthors"/>">Sort By Author</a></li>
                                 <li><a href="<c:url value="/productList/sortedPrice"/>">Sort By Price</a></li>
-                                <li><a href="#">Sort By Book Rating</a></li>
+                                <li><a href="<c:url value="/productList/sortedBookRating"/>">Sort By Book Rating</a></li>
                                 <li><a href="<c:url value="/productList/sortedReleaseDate"/>">Sort By Release Date</a></li>
                                 <li><a href="<c:url value="/productList/sortedBookTopSellers"/>">Sort By Top Sellers</a></li>
                             </ul>
