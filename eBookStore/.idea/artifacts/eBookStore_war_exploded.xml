@@ -7,6 +7,7 @@
         <element id="directory" name="classes">
           <element id="module-output" name="eBookStore" />
           <element id="library" level="application" name="angular" />
+          <element id="module-output" name="ebookstore" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Spring-4.3.16.RELEASE" />
@@ -68,6 +69,7 @@
         </element>
         <element id="library" level="project" name="Maven: com.h2database:h2:1.4.190" />
       </element>
+      <element id="javaee-facet-resources" facet="ebookstore/web/Web" />
     </root>
   </artifact>
 </component>

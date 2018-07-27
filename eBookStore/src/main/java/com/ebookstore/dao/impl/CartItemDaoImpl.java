@@ -60,4 +60,14 @@ public class CartItemDaoImpl implements CartItemDao
 
         return (CartItem) query.uniqueResult();
     }
+
+    public void addAllCartItems(Cart cart) {
+        List<CartItem> cartItems = cart.getCartItems();
+
+
+
+        for (CartItem item : cartItems) {
+            removeCartItem(item);
+        }
+    }
 }
