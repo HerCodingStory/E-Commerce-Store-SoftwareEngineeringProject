@@ -8,11 +8,13 @@ public interface ProductDao
 {
         void addProduct(Product product);
 
-        Product getProductById(String id);
+        Product getProductById(int id);
 
-        List<Product> getAllProducts();
+        List<Product> getProductList();
 
-        void deleteProduct(String id);
+        void deleteProduct(Product product);
+
+        void editProduct(Product product);
 
         List<Product> sortBooksByAuthor();
 
@@ -20,11 +22,19 @@ public interface ProductDao
 
         List<Product> sortBooksByPrice();
 
-        // List<Product> sortBooksByBookRating();
-
         List<Product> sortBooksByReleaseDate();
 
-        List<Product> getProductsByAuthor(String author);
+        //List<Product> sortBooksByRating();
+
+        List<Product> sortBooksByTopSellers();
+
+        List<Product> getAllProductsByAuthor(String author);
+
+        List<Product> searchProduct(String searchText);
+
+
+
+
 
 
 }

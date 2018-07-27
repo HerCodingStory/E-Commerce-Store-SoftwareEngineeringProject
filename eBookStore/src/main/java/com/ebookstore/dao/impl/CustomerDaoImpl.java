@@ -5,6 +5,7 @@ import com.ebookstore.model.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
@@ -24,6 +25,10 @@ public class CustomerDaoImpl implements CustomerDao
 
         customer.getShippingAddress().setCustomer(customer);
         customer.getCreditCard().setCustomer(customer);
+        if (customer.getNickname().isEmpty())
+        {
+            customer.setNickname("Anonymous");
+        }
 
         session.saveOrUpdate(customer);
         session.saveOrUpdate(customer.getShippingAddress());
@@ -36,31 +41,17 @@ public class CustomerDaoImpl implements CustomerDao
         newUser.setCustomerId(customer.getCustomerId());
 
         Authorities newAuthority = new Authorities();
-
         newAuthority.setUsername(customer.getUsername());
         newAuthority.setAuthority("ROLE_USER");
         session.saveOrUpdate(newUser);
         session.saveOrUpdate(newAuthority);
 
-        //Cart newcar = new Cart();
+        Cart newCart = new Cart();
+        newCart.setCustomer(customer);
+        customer.setCart(newCart);
         session.saveOrUpdate(customer);
-        session.flush();
-    }
+        session.saveOrUpdate(newCart);
 
-    public void editCustomer(Customer customer) {
-        Session session  = sessionFactory.getCurrentSession();
-
-        Users user = (Users) session.get(Users.class, customer.getCustomerId());
-        Authorities auth = (Authorities) session.get(Authorities.class, customer.getCustomerId());
-        //ShippingAddress shipAdd = (ShippingAddress) session.get(ShippingAddress.class, customer.getCustomerId());
-        //CreditCard cCard = (CreditCard) session.get(CreditCard.class, customer.getCustomerId());
-
-        session.saveOrUpdate(customer);
-        session.saveOrUpdate(customer.getCreditCard());
-        session.saveOrUpdate(customer.getShippingAddress());
-        auth.setUsername(customer.getUsername());
-        user.setUsername(customer.getUsername());
-        user.setPassword(customer.getPassword());
         session.flush();
     }
 
@@ -91,4 +82,22 @@ public class CustomerDaoImpl implements CustomerDao
         session.delete(getCustomerById(id));
         session.flush();
     }
+
+    public void editCustomer(Customer customer)
+    {
+        Session session = sessionFactory.getCurrentSession();
+
+        customer.getShippingAddress().setShippingAddressId(customer.getCustomerId());
+        customer.getCreditCard().setCreditCardId(customer.getCustomerId());
+        customer.getShippingAddress().setCustomer(customer);
+        customer.getCreditCard().setCustomer(customer);
+
+        session.saveOrUpdate(customer);
+        session.saveOrUpdate(customer.getShippingAddress());
+        session.saveOrUpdate(customer.getCreditCard());
+
+        session.flush();
+    }
+
+
 }

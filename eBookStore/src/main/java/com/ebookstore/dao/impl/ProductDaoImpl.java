@@ -1,7 +1,9 @@
 package com.ebookstore.dao.impl;
 
 import com.ebookstore.dao.ProductDao;
+import com.ebookstore.model.Comment;
 import com.ebookstore.model.Product;
+import com.ebookstore.model.Rating;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,11 +23,12 @@ public class ProductDaoImpl implements ProductDao
     public void addProduct(Product product)
     {
         Session session = sessionFactory.getCurrentSession();
+
         session.saveOrUpdate(product);
         session.flush();
     }
 
-    public Product getProductById(String id)
+    public Product getProductById(int id)
     {
         Session session = sessionFactory.getCurrentSession();
         Product product = (Product) session.get(Product.class, id);
@@ -34,20 +37,34 @@ public class ProductDaoImpl implements ProductDao
         return product;
     }
 
-    public List<Product> getAllProducts()
-    {
+    public void editProduct (Product product) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(product);
+        session.flush();
+    }
+
+    public List<Product> getProductList() {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Product");
+        List<Product> productList = query.list();
+        session.flush();
+
+        return productList;
+    }
+
+    public List<Product> getAllProductsByAuthor(String author)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Product WHERE Productauthor = '" + author + "'");
         List<Product> products = ((Query) query).list();
         session.flush();
 
         return products;
     }
 
-    public void deleteProduct(String id)
-    {
+    public void deleteProduct (Product product) {
         Session session = sessionFactory.getCurrentSession();
-        session.delete(getProductById(id));
+        session.delete(product);
         session.flush();
     }
 
@@ -81,18 +98,6 @@ public class ProductDaoImpl implements ProductDao
         return orderedProducts;
     }
 
-    // Book Rating System is not done yet
-    /*
-    public List<Product> sortBooksByBookRating()
-    {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Product ORDER BY Productprice DESC");
-        List<Product> orderedProducts = ((Query) query).list();
-        session.flush();
-
-        return orderedProducts;
-    }*/
-
     public List<Product> sortBooksByReleaseDate()
     {
         Session session = sessionFactory.getCurrentSession();
@@ -103,16 +108,40 @@ public class ProductDaoImpl implements ProductDao
         return orderedProducts;
     }
 
-    public List<Product> getProductsByAuthor(String author)
+
+    // Book Rating System is not done yet
+    /*
+    public List<Product> sortBooksByRating()
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Product WHERE Productauthor = ?");
-        List<Product> results = ((Query) query).list();
+        Query query = session.createQuery("FROM Product ORDER BY rating DESC");
+        List<Product> orderedProducts = ((Query) query).list();
         session.flush();
 
-        //FullTextEntityManager fulltext = Search.getFullTextEntityManager();
+        return orderedProducts;
+    }*/
 
-        return results;
+
+
+    public List<Product> sortBooksByTopSellers()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Product ORDER BY TopSellerStatus");
+        List<Product> orderedProducts = ((Query) query).list();
+        session.flush();
+
+        return orderedProducts;
     }
+
+    public List<Product> searchProduct(String searchText)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Product where ProductAuthor like '%" + searchText + "%' OR ProductName like '%" + searchText +"%'");
+        List<Product> orderedProducts = ((Query) query).list();
+        session.flush();
+
+        return orderedProducts;
+    }
+
 
 }

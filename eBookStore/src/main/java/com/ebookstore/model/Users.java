@@ -1,10 +1,8 @@
 package com.ebookstore.model;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Users
@@ -15,6 +13,9 @@ public class Users
     private String username;
     private String password;
     private boolean enabled;
+
+    //@OneToOne
+    @JoinColumn(name="customerId")
     private int customerId;
 
     public int getUserId() {

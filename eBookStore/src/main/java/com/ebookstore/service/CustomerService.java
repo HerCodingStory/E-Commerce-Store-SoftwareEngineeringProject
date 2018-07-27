@@ -10,9 +10,10 @@ public interface CustomerService
 
     Customer getCustomerById(int customerId);
 
+    void editCustomer(Customer customer);
+
     List<Customer> getAllCustomers();
 
     Customer getCustomerByUsername(String username);
-
 
 }

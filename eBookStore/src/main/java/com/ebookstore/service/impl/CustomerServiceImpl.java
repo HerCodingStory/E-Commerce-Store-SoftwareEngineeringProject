@@ -32,5 +32,9 @@ public class CustomerServiceImpl implements CustomerService
         return customerDao.getCustomerByUsername(username);
     }
 
+    public void editCustomer(Customer customer)
+    {
+        customerDao.editCustomer(customer);
+    }
 
 }

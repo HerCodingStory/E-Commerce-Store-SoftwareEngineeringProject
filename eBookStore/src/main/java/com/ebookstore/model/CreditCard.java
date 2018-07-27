@@ -1,5 +1,7 @@
 package com.ebookstore.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -7,50 +9,61 @@ import java.io.Serializable;
 @Entity
 public class CreditCard implements Serializable
 {
+    private static final long serialVersionUID = -6091579459463730482L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private int creditCardId;
 
-    @NotNull
-    private Long creditCardNumber;
+    @NotNull(message = "The credit card number must not be null.")
+    private String creditCardNumber;
 
-    @NotNull
-    private Integer expirationMonth;
+    @NotNull(message = "The expiration month must not be null.")
+    private String expirationMonth;
 
-    @NotNull
-    private Integer expirationYear;
+    @NotNull(message = "The expiration year must not be null.")
+    private String expirationYear;
 
-    @NotNull
+    @NotNull(message = "The credit card name must not be null.")
     private String creditCardName;
 
-    @NotNull
-    private Integer cardVerificationValue;
+    @NotNull(message = "The credit card CVV must not be null.")
+    private String cardVerificationValue;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="customerId")
     private Customer customer;
 
-    public Long getCreditCardNumber() {
+    public String getCreditCardNumber() {
         return creditCardNumber;
     }
 
-    public void setCreditCardNumber(Long creditCardNumber) {
+    public void setCreditCardNumber(String creditCardNumber) {
         this.creditCardNumber = creditCardNumber;
     }
 
-    public Integer getExpirationMonth() {
+    public String getExpirationMonth() {
         return expirationMonth;
     }
 
-    public void setExpirationMonth(Integer expirationMonth) {
+    public void setExpirationMonth(String expirationMonth) {
         this.expirationMonth = expirationMonth;
     }
 
-    public Integer getExpirationYear() {
+    public String getExpirationYear() {
         return expirationYear;
     }
 
-    public void setExpirationYear(Integer expirationYear) {
+    public void setExpirationYear(String expirationYear) {
         this.expirationYear = expirationYear;
+    }
+
+    public String getCardVerificationValue() {
+        return cardVerificationValue;
+    }
+
+    public void setCardVerificationValue(String cardVerificationValue) {
+        this.cardVerificationValue = cardVerificationValue;
     }
 
     public String getCreditCardName() {
@@ -61,13 +74,6 @@ public class CreditCard implements Serializable
         this.creditCardName = creditCardName;
     }
 
-    public Integer getCardVerificationValue() {
-        return cardVerificationValue;
-    }
-
-    public void setCardVerificationValue(Integer cardVerificationValue) {
-        this.cardVerificationValue = cardVerificationValue;
-    }
 
     public int getCreditCardId() {
         return creditCardId;

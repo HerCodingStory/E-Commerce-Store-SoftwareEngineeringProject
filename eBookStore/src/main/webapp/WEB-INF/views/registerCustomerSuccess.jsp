@@ -13,7 +13,7 @@
 
         <section class="container">
             <p>
-                <a href="<spring:url value="/productList" />" class="btn btn-default">Products</a>
+                <a href="<spring:url value="/productList/sortedTitle" />" class="btn btn-default">Products</a>
             </p>
         </section>
 

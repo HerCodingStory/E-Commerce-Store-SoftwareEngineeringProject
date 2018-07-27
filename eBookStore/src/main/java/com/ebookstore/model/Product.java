@@ -1,20 +1,26 @@
 package com.ebookstore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 // adds this class to database. An instance of this corresponds to a row
 @Entity
-public class Product
+public class Product implements Serializable
 {
+    private static final long serialVersionUID = -3532377236419382983L;
+
     @Id // unique id
     @GeneratedValue(strategy = GenerationType.AUTO) // generates products ID as they are added
-    private String productId;
+    private int productId;
     private String productName;
     private String productAuthor;
+    private String productAuthorBio;
     private String productCategory;
     private String productDescription;
     private double productPrice;
@@ -23,12 +29,24 @@ public class Product
     private Date productReleaseDate;
     private int unitInStock;
     private String productPublisher;
+    private String topSellerStatus;
 
-    public String getProductId() {
+    @OneToOne
+    @JoinColumn(name="ratingId")
+    private Rating rating;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Comment> comment;
+
+    @Transient
+    private MultipartFile productImage;
+
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
@@ -104,11 +122,53 @@ public class Product
         this.productPublisher = productPublisher;
     }
 
-    public Date getProductReleaseDate() {
+    public Date getProductReleaseDate()
+    {
         return productReleaseDate;
     }
 
-    public void setProductReleaseDate(Date productReleaseDate) {
+    public void setProductReleaseDate(Date productReleaseDate)
+    {
         this.productReleaseDate = productReleaseDate;
+    }
+
+    public MultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public List<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<Comment> comment) {
+        this.comment = comment;
+    }
+
+    public String getTopSellerStatus() {
+        return topSellerStatus;
+    }
+
+    public void setTopSellerStatus(String topSellerStatus) {
+        this.topSellerStatus = topSellerStatus;
+    }
+
+    public String getProductAuthorBio() {
+        return productAuthorBio;
+    }
+
+    public void setProductAuthorBio(String productAuthorBio) {
+        this.productAuthorBio = productAuthorBio;
     }
 }

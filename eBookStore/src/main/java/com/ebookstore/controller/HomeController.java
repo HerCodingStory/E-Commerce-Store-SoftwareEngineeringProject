@@ -1,129 +1,17 @@
 package com.ebookstore.controller;
 
-import com.ebookstore.dao.ProductDao;
-import com.ebookstore.dao.CustomerDao;
-import com.ebookstore.model.CreditCard;
-import com.ebookstore.model.Customer;
-import com.ebookstore.model.Product;
-import com.ebookstore.model.ShippingAddress;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.util.List;
-
+// This controller is in charge of the home page
 @Controller
 public class HomeController
 {
-    @Autowired
-    private ProductDao productDao;
-    @Autowired
-    private CustomerDao customerDao;
-
+    // This method takes you to the home page
     @RequestMapping("/")
     public String home()
     {
         return "home";
     }
 
-    @RequestMapping("/productList")
-    public String getProducts(Model model)
-    {
-        List<Product> products = productDao.getAllProducts();
-        model.addAttribute("products", products);
-
-        return "productList";
-    }
-
-    @RequestMapping("/productList/viewProduct/{productId}")
-    public String viewProduct(@PathVariable String productId, Model model) throws IOException
-    {
-        Product product = productDao.getProductById(productId);
-
-        model.addAttribute(product);
-
-        return "viewProduct";
-    }
-
-    @RequestMapping("/productList/sortedAuthors")
-    public String sortByAuthor(Model model)
-    {
-        List<Product> products = productDao.sortBooksByAuthor();
-        model.addAttribute("products", products);
-
-        return "sortedBooks";
-    }
-
-    @RequestMapping("/productList/sortedTitle")
-    public String sortByTitle(Model model)
-    {
-        List<Product> products = productDao.sortBooksByTitle();
-        model.addAttribute("products", products);
-
-        return "sortedBooks";
-    }
-
-    @RequestMapping("/productList/sortedPrice")
-    public String sortByPrice(Model model)
-    {
-        List<Product> products = productDao.sortBooksByPrice();
-        model.addAttribute("products", products);
-
-        return "sortedBooks";
-    }
-
-    // Book Rating system is not implemented yet
-    /*
-    @RequestMapping("/productList/sortedBooks")
-    public String sortByBookRating(Model model)
-    {
-        List<Product> products = productDao.sortBooksByBookRating();
-        model.addAttribute("products", products);
-
-        return "sortBookRating";
-    }*/
-
-    @RequestMapping("/productList/sortedReleaseDate")
-    public String sortByReleaseDate(Model model)
-    {
-        List<Product> products = productDao.sortBooksByReleaseDate();
-        model.addAttribute("products", products);
-
-        return "sortedBooks";
-    }
-
-    @RequestMapping("/productList/searchBook")
-    public String searchProducts(String author, Model model)
-    {
-        List<Product> products = productDao.getProductsByAuthor(author);
-        model.addAttribute("products", products);
-
-        return "searchBook";
-    }
-
-    @RequestMapping("/account/editCustomer/{id}")
-    public String editAccount(@PathVariable("id") int id, Model model)
-    {
-        Customer customer = customerDao.getCustomerById(id);
-        ShippingAddress shipAdd = customer.getShippingAddress();
-        CreditCard cCard = customer.getCreditCard();
-
-        model.addAttribute(customer);
-
-        return "editCustomer";
-    }
-
-    @RequestMapping(value = "/account/editCustomer", method = RequestMethod.POST)
-    public String editAccount(@ModelAttribute("customer") Customer customer, Model model, HttpServletRequest request)
-    {
-        customerDao.editCustomer(customer);
-
-        return ("redirect:/account/viewCustomer/" + customer.getCustomerId());
-    }
 }
