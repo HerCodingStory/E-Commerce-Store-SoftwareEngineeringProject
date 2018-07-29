@@ -30,10 +30,6 @@ public class Comment implements Serializable
     @Column(nullable = false, length = 20)
     private double rating = 0.0;
 
-    //@ManyToOne
-    //@JoinColumn(name="customerId")
-    //private Customer customer;
-
     public int getCommentId() {
         return commentId;
     }
@@ -89,4 +85,5 @@ public class Comment implements Serializable
     public void setRating(double rating) {
         this.rating = rating;
     }
+
 }

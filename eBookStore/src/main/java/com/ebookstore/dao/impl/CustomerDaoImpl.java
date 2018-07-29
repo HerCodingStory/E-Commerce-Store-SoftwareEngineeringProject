@@ -105,8 +105,6 @@ public class CustomerDaoImpl implements CustomerDao
         session.saveOrUpdate(customer.getShippingAddress());
         session.saveOrUpdate(customer.getCreditCard());
 
-        //session.saveOrUpdate(customer.getUsername(), customer);
-
         Cart newCart = new Cart();
         newCart.setCartId(customer.getCustomerId());
         newCart.setCustomer(customer);

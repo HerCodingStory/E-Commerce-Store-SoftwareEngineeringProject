@@ -1,6 +1,7 @@
 package com.ebookstore.controller;
 
 import com.ebookstore.model.Cart;
+import com.ebookstore.model.CartItem;
 import com.ebookstore.model.Customer;
 import com.ebookstore.model.CustomerOrder;
 import com.ebookstore.service.CartService;
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 // This controller is in charge of handling any events that control the customers orders
 @Controller
@@ -27,6 +31,7 @@ public class OrderController
     public String createOrder(@PathVariable("cartId") int cartId) {
         CustomerOrder customerOrder = new CustomerOrder();
         Cart cart=cartService.getCartById(cartId);
+
         customerOrder.setCart(cart);
 
         Customer customer = cart.getCustomer();
@@ -35,6 +40,7 @@ public class OrderController
         customerOrder.setShippingAddress(customer.getShippingAddress());
 
         customerOrderService.addCustomerOrder(customerOrder);
+
 
         return "redirect:/checkout?cartId="+cartId;
     }

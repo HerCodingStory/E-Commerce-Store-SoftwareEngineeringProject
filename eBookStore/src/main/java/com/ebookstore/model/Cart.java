@@ -1,6 +1,7 @@
 package com.ebookstore.model;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,11 +17,13 @@ public class Cart implements Serializable
     @GeneratedValue
     private int cartId;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<CartItem> cartItems;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<CartItem> savedItems;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<SavedItems> savedItemCart;
 
     @OneToOne
     @JoinColumn(name = "customerId")
@@ -61,12 +64,11 @@ public class Cart implements Serializable
         this.grandTotal = grandTotal;
     }
 
-
-    public List<CartItem> getSavedItems() {
-        return savedItems;
+    public List<SavedItems> getSavedItems() {
+        return savedItemCart;
     }
 
-    public void setSavedItems(List<CartItem> savedItems) {
-        this.savedItems = savedItems;
+    public void setSavedItems(List<SavedItems> savedItemCart) {
+        this.savedItemCart = savedItemCart;
     }
 }

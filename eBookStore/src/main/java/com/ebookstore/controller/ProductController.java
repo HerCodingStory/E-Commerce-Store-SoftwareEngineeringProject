@@ -57,11 +57,11 @@ public class ProductController
     {
         Comment comment = new Comment();
 
-        Product product = new Product();
+        Product product = productService.getProductById(productId);
 
         //Customer customer = new Customer();
 
-        comment.setProduct(productService.getProductById(productId));
+        comment.setProduct(product);
         //comment.setCustomer(customer);
 
         model.addAttribute("comment", comment);
@@ -93,9 +93,10 @@ public class ProductController
         commentList.add(comment);
 
         product.setComment(commentList);
-        comment.setProduct(productService.getProductById(productId));
+        comment.setProduct(product);
         productService.addProduct(product);
         commentService.addComment(comment);
+
 
         return "redirect:/productList/viewProduct/"+productId;
     }

@@ -102,6 +102,27 @@
             width: 50%;
         }
     }
+
+    thead input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+    }
+
+    input[name="search"] {
+        width: 130px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('https://png.icons8.com/metro/1600/search.png');
+        background-size: 28px 28px;
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+    }
+
 </style>
 <head>
 

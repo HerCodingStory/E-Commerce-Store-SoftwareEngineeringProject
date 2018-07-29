@@ -53,7 +53,7 @@
                         <strong>Unit in Stock</strong> : ${product.unitInStock}
                     </p>
                     <p>
-                        <strong>Rating</strong> :
+                        <strong>Overall Rating</strong> :
                         <c:if test="${product.rating == 0.0}">
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
@@ -144,7 +144,50 @@
                             <td>${comment.time}</td>
                             <td>${comment.nickname}</td>
                             <td>${comment.commentTitle}</td>
-                            <td>${comment.rating}</td>
+                            <td>
+                                <c:if test="${comment.rating == 0.0}">
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </c:if>
+                                <c:if test="${comment.rating == 1.0}">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </c:if>
+                                <c:if test="${comment.rating == 2.0}">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </c:if>
+                                <c:if test="${comment.rating == 3.0}">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </c:if>
+                                <c:if test="${comment.rating == 4.0}">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </c:if>
+                                <c:if test="${comment.rating == 5.0}">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                </c:if>
+                            </td>
                             <td>${comment.comment}</td>
                             <%--<td>--%>
                                 <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>

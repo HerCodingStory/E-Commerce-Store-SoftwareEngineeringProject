@@ -12,8 +12,6 @@ import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -36,43 +34,39 @@ public class CartResources
     Cart getCartById (@PathVariable(value = "cartId") int cartId) {
         return cartService.getCartById(cartId);
     }
-
+    /*
+        @RequestMapping("/rest/savedItems/{savedItemsId}")
+        public @ResponseBody
+        SavedItems getSavedItemsById (@PathVariable(value = "savedItemsId") int savedItemsId) {
+            return cartService.getSavedItemsById(savedItemsId);
+        }
+    */
     @RequestMapping(value = "/rest/savedItems/save/{productId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void saveItems(@PathVariable(value ="productId") int productId, @AuthenticationPrincipal User activeUser) {
-        System.out.println("Hello");
+
         Customer customer = customerService.getCustomerByUsername(activeUser.getUsername());
         Cart cart = customer.getCart();
         Product product = productService.getProductById(productId);
-        List<CartItem> currentCart = cart.getCartItems();
+        List<SavedItems> savedItems = cart.getSavedItems();
 
-        for (int i=0; i<currentCart.size(); i++) {
-            if(product.getProductId()==currentCart.get(i).getProduct().getProductId()){
-                CartItem cartItem = currentCart.get(i);
-                cartItem.setQuantity(cartItem.getQuantity()+1);
-                cartItem.setTotalPrice(product.getProductPrice()*cartItem.getQuantity());
-                cartItemService.saveCartItem(cartItem);
-
+        for (int i=0; i<savedItems.size(); i++) {
+            if(savedItems.get(i).getProduct().getProductId()==productId){
                 return;
             }
         }
 
-        CartItem cartItem = new CartItem();
-        cartItem.setProduct(product);
-        cartItem.setQuantity(1);
-        System.out.println("This is saveditems before " + customer.getCart().getSavedItems().toString());
-        cartItem.setTotalPrice(product.getProductPrice()*cartItem.getQuantity());
-        cartItem.setCart(cart);
-        System.out.println("This is saveditems before " + customer.getCart().getSavedItems().toString());
-        cartItemService.saveCartItem(cartItem);
+        SavedItems saveItem = new SavedItems();
+        saveItem.setCart(cart);
+        saveItem.setProduct(product);
+        cartService.updateSavedItems(saveItem);
     }
 
     @RequestMapping(value = "/rest/savedItems/removeSaved/{productId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void removeSavedItem (@PathVariable(value = "productId") int productId) {
-        CartItem cartItem = cartItemService.getCartItemByProductId(productId);
-        cartItemService.removeSavedCartItem(cartItem);
-
+        SavedItems savedItems = cartService.getSavedItemsByProductId(productId);
+        cartService.removeSavedCartItem(savedItems);
     }
 
     @RequestMapping(value = "/rest/cart/add/{productId}", method = RequestMethod.PUT)
