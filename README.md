@@ -1,9 +1,9 @@
 # SoftwareEng
 
-Google drive link:
+Google drive link(Group accessible):
 - https://drive.google.com/open?id=1FxJ_5ipnQX23jRVy_aJ4rQUlMSKbqdK5
 
-Trello link:
+Trello link(Group accessible):
 - https://trello.com/b/LAjIfngc/software-engineering
 
 Websites I used to start learning Sprint:
@@ -14,7 +14,7 @@ Website pictures:
 ![alt text](https://github.com/cristyevr94/SoftwareEng/blob/CristinaV/WebsiteFront.PNG)
 
 My database content:
-(https://github.com/cristyevr94/SoftwareEng/blob/CristinaV/backup.sql)
+- https://github.com/cristyevr94/SoftwareEng/blob/CristinaV/backup.sql
 
 What you need:
 - Maven
