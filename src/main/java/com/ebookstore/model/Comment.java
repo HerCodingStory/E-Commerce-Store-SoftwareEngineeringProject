@@ -11,17 +11,24 @@ public class Comment implements Serializable
     @Id
     @GeneratedValue
     private int commentId;
-    private String comment;
-    private Date time;
-    private String ip;
 
-    @OneToOne
+    @Column(nullable = false, length = 20)
+    private String commentTitle;
+
+    private String nickname = "Anonymous";
+
+    @Column(nullable = false, length = 500)
+    private String comment;
+
+    @Column(nullable = false)
+    private Date time = new Date();
+
+    @ManyToOne
     @JoinColumn(name="productId")
     private Product product;
 
-    @OneToOne
-    @JoinColumn(name="customerId")
-    private Customer customer;
+    @Column(nullable = false, length = 20)
+    private double rating = 0.0;
 
     public int getCommentId() {
         return commentId;
@@ -39,28 +46,12 @@ public class Comment implements Serializable
         this.comment = comment;
     }
 
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
     public Product getProduct() {
         return product;
     }
 
     public void setProduct(Product product) {
         this.product = product;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 
     public Date getTime() {
@@ -70,4 +61,29 @@ public class Comment implements Serializable
     public void setTime(Date time) {
         this.time = time;
     }
+
+    public String getCommentTitle() {
+        return commentTitle;
+    }
+
+    public void setCommentTitle(String commentTitle) {
+        this.commentTitle = commentTitle;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
 }

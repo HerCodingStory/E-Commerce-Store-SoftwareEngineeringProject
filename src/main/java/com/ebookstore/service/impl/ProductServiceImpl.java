@@ -1,7 +1,10 @@
 package com.ebookstore.service.impl;
 
 import com.ebookstore.dao.ProductDao;
+import com.ebookstore.model.Cart;
+import com.ebookstore.model.CartItem;
 import com.ebookstore.model.Product;
+import com.ebookstore.service.CartService;
 import com.ebookstore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,9 @@ public class ProductServiceImpl implements ProductService
 {
     @Autowired
     private ProductDao productDao;
+
+    @Autowired
+    private CartService cartService;
 
     public Product getProductById (int productId) {
         return productDao.getProductById(productId);
@@ -33,4 +39,6 @@ public class ProductServiceImpl implements ProductService
     public void deleteProduct(Product product) {
         productDao.deleteProduct(product);
     }
+
+
 }

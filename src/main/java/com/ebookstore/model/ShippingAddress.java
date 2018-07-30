@@ -32,7 +32,7 @@ public class ShippingAddress implements Serializable
 
     private String zipCode;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="customerId")
     private Customer customer;
 

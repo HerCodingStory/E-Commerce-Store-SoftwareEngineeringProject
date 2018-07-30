@@ -53,7 +53,7 @@
 
         <div class="form-group">
             <label for="cardVerificationValue">CVV</label>
-            <form:input path="cart.customer.creditCard.cardVerificationValue" id="cardVerificationValue" class="form-Control"/>
+            <form:password path="cart.customer.creditCard.cardVerificationValue" id="cardVerificationValue" class="form-Control"/>
         </div>
 
         <input type="hidden" name="_flowExecutionKey" />

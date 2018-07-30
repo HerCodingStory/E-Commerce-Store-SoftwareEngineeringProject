@@ -25,7 +25,19 @@ public class CartItemDaoImpl implements CartItemDao
         session.flush();
     }
 
+    public void saveCartItem(CartItem cartItem) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(cartItem);
+        session.flush();
+    }
+
     public void removeCartItem (CartItem cartItem) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(cartItem);
+        session.flush();
+    }
+
+    public void removeSavedCartItem (CartItem cartItem) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(cartItem);
         session.flush();
@@ -33,6 +45,7 @@ public class CartItemDaoImpl implements CartItemDao
 
     public void removeAllCartItems(Cart cart) {
         List<CartItem> cartItems = cart.getCartItems();
+
 
         for (CartItem item : cartItems) {
             removeCartItem(item);

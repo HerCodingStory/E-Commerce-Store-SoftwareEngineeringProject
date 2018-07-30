@@ -1,7 +1,9 @@
 package com.ebookstore.dao.impl;
 
 import com.ebookstore.dao.ProductDao;
+import com.ebookstore.model.Comment;
 import com.ebookstore.model.Product;
+import com.ebookstore.model.Rating;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,6 +23,7 @@ public class ProductDaoImpl implements ProductDao
     public void addProduct(Product product)
     {
         Session session = sessionFactory.getCurrentSession();
+
         session.saveOrUpdate(product);
         session.flush();
     }
@@ -52,7 +55,7 @@ public class ProductDaoImpl implements ProductDao
     public List<Product> getAllProductsByAuthor(String author)
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Product WHERE Productauthor = " + author);
+        Query query = session.createQuery("FROM Product WHERE Productauthor = '" + author + "'");
         List<Product> products = ((Query) query).list();
         session.flush();
 
@@ -107,7 +110,7 @@ public class ProductDaoImpl implements ProductDao
 
 
     // Book Rating System is not done yet
-    /*
+
     public List<Product> sortBooksByRating()
     {
         Session session = sessionFactory.getCurrentSession();
@@ -116,19 +119,19 @@ public class ProductDaoImpl implements ProductDao
         session.flush();
 
         return orderedProducts;
-    }*/
+    }
 
-    // Book Selling System is not done yet
-    /*
+
+
     public List<Product> sortBooksByTopSellers()
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Product ORDER BY Productprice DESC");
+        Query query = session.createQuery("FROM Product ORDER BY TopSellerStatus");
         List<Product> orderedProducts = ((Query) query).list();
         session.flush();
 
         return orderedProducts;
-    }*/
+    }
 
     public List<Product> searchProduct(String searchText)
     {

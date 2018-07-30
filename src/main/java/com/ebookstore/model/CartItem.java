@@ -65,4 +65,5 @@ public class CartItem implements Serializable
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
+
 }

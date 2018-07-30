@@ -52,8 +52,6 @@
                                     <br>
                                         ${order.cart.customer.creditCard.expirationMonth}/ ${order.cart.customer.creditCard.expirationYear}
                                     <br>
-                                        ${order.cart.customer.creditCard.cardVerificationValue}
-                                    <br>
                                 </address>
                             </div>
                         </div>

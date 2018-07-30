@@ -1,10 +1,16 @@
 package com.ebookstore.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 // adds this class to database. An instance of this corresponds to a row
 @Entity
@@ -17,6 +23,7 @@ public class Product implements Serializable
     private int productId;
     private String productName;
     private String productAuthor;
+    private String productAuthorBio;
     private String productCategory;
     private String productDescription;
     private double productPrice;
@@ -25,14 +32,19 @@ public class Product implements Serializable
     private Date productReleaseDate;
     private int unitInStock;
     private String productPublisher;
+    private String topSellerStatus;
 
-    @OneToOne
-    @JoinColumn(name="ratingId")
-    private Rating rating;
+    @JoinColumn(name="rating") // average of total ratings
+    private double rating = 0.0;
+    @JoinColumn(name="totalrating") // total rating
+    private double total_rating= 0.0;
+    @JoinColumn(name="#ofrating") // number of ratings
+    private double numrating = 0.0;
 
-    @OneToOne
-    @JoinColumn(name="commentId")
-    private Comment comment;
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    //@Column(name="commentId")
+    private List<Comment> comment;
 
     @Transient
     private MultipartFile productImage;
@@ -135,19 +147,42 @@ public class Product implements Serializable
         this.productImage = productImage;
     }
 
-    public Rating getRating() {
-        return rating;
+
+    public String getTopSellerStatus() {
+        return topSellerStatus;
     }
 
-    public void setRating(Rating rating) {
-        this.rating = rating;
+    public void setTopSellerStatus(String topSellerStatus) {
+        this.topSellerStatus = topSellerStatus;
     }
 
-    public Comment getComment() {
+    public String getProductAuthorBio() {
+        return productAuthorBio;
+    }
+
+    public void setProductAuthorBio(String productAuthorBio) {
+        this.productAuthorBio = productAuthorBio;
+    }
+
+    public List<Comment> getComment() {
         return comment;
     }
 
-    public void setComment(Comment comment) {
+    public void setComment(List<Comment> comment) {
         this.comment = comment;
     }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating() { this.rating = total_rating/numrating; }
+
+    public double getTotal_rating() { return total_rating; }
+
+    public void setTotal_rating(double total_rating) { this.total_rating = total_rating; }
+
+    public double getNumrating() { return numrating; }
+
+    public void setNumrating(double numrating) { this.numrating = numrating; }
 }

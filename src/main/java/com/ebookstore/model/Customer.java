@@ -24,6 +24,8 @@ public class Customer implements Serializable
     private String customerEmail;
     private String customerPhone;
 
+    private String nickname;
+
     @NotEmpty (message = "The customer username must not be null.")
     private String username;
 
@@ -40,21 +42,18 @@ public class Customer implements Serializable
     @JoinColumn(name="creditCardId")
     private CreditCard creditCard;
 
-    @OneToOne
-    @JoinColumn(name="ratingId")
-    private Rating rating;
+    //@OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name="ratingId")
+   // private Rating rating;
 
-    @OneToOne
-    @JoinColumn(name="commentId")
-    private Comment comment;
+    //@OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name="commentId")
+    //private Comment comment;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cartId")
     @JsonIgnore
     private Cart cart;
-
-    @Transient
-    private MultipartFile customerImage;
 
     public int getCustomerId() {
         return customerId;
@@ -128,22 +127,6 @@ public class Customer implements Serializable
         this.creditCard = creditcard;
     }
 
-    public Comment getComment() {
-        return comment;
-    }
-
-    public void setComment(Comment comment) {
-        this.comment = comment;
-    }
-
-    public Rating getRating() {
-        return rating;
-    }
-
-    public void setRating(Rating rating) {
-        this.rating = rating;
-    }
-
     public Cart getCart() {
         return cart;
     }
@@ -152,12 +135,13 @@ public class Customer implements Serializable
         this.cart = cart;
     }
 
-    public MultipartFile getCustomerImage() {
-        return customerImage;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setCustomerImage(MultipartFile customerImage) {
-        this.customerImage = customerImage;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
+
 }
 

@@ -10,7 +10,7 @@
             <p class="lead">Please update the product information here:</p>
         </div>
 
-        <form:form action="${pageContext.request.contextPath}/admin/product/editProduct" method="post"
+        <form:form action="${pageContext.request.contextPath}/admin/productInventory/editProduct" method="post"
                    commandName="product" enctype="multipart/form-data">
         <form:hidden path="productId" value="${product.productId}" />
 
@@ -25,7 +25,12 @@
         </div>
 
         <div class="form-group">
-            <label for="description">Description</label>
+            <label for="authorBio">Author's Bio</label>
+            <form:textarea path="productAuthorBio" id="authorBio" class="form-Control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Book's Description</label>
             <form:textarea path="productDescription" id="description" class="form-Control" value="${product.productDescription}"/>
         </div>
 
@@ -56,7 +61,15 @@
         </div>
 
         <div class="form-group">
-            <label for="releaseDate">Release Date (YYYY-MM-DD)</label>
+            <label for="topSellerStatus">Top Seller Status</label>
+            <label class="checkbox-inline"><form:radiobutton path="topSellerStatus" id="topSellerStatus"
+                                                             value="active" checked="checked"/>Active</label>
+            <label class="checkbox-inline"><form:radiobutton path="topSellerStatus" id="topSellerStatus"
+                                                             value="inactive" />Inactive</label>
+        </div>
+
+        <div class="form-group">
+            <label for="releaseDate">Release Date (YYYY/MM/DD)</label>
             <form:input path="productReleaseDate" id="releaseDate" class="form-Control" value="${product.productReleaseDate}"/>
         </div>
 

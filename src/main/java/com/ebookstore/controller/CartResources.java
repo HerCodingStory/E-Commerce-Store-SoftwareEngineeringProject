@@ -1,9 +1,6 @@
 package com.ebookstore.controller;
 
-import com.ebookstore.model.Cart;
-import com.ebookstore.model.CartItem;
-import com.ebookstore.model.Customer;
-import com.ebookstore.model.Product;
+import com.ebookstore.model.*;
 import com.ebookstore.service.CartItemService;
 import com.ebookstore.service.CartService;
 import com.ebookstore.service.CustomerService;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/rest/cart")
 public class CartResources
 {
     @Autowired
@@ -33,13 +29,47 @@ public class CartResources
     @Autowired
     private ProductService productService;
 
-    @RequestMapping("/{cartId}")
+    @RequestMapping("/rest/cart/{cartId}")
     public @ResponseBody
     Cart getCartById (@PathVariable(value = "cartId") int cartId) {
         return cartService.getCartById(cartId);
     }
+    /*
+        @RequestMapping("/rest/savedItems/{savedItemsId}")
+        public @ResponseBody
+        SavedItems getSavedItemsById (@PathVariable(value = "savedItemsId") int savedItemsId) {
+            return cartService.getSavedItemsById(savedItemsId);
+        }
+    */
+    @RequestMapping(value = "/rest/savedItems/save/{productId}", method = RequestMethod.PUT)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void saveItems(@PathVariable(value ="productId") int productId, @AuthenticationPrincipal User activeUser) {
 
-    @RequestMapping(value = "/add/{productId}", method = RequestMethod.PUT)
+        Customer customer = customerService.getCustomerByUsername(activeUser.getUsername());
+        Cart cart = customer.getCart();
+        Product product = productService.getProductById(productId);
+        List<SavedItems> savedItems = cart.getSavedItems();
+
+        for (int i=0; i<savedItems.size(); i++) {
+            if(savedItems.get(i).getProduct().getProductId()==productId){
+                return;
+            }
+        }
+
+        SavedItems saveItem = new SavedItems();
+        saveItem.setCart(cart);
+        saveItem.setProduct(product);
+        cartService.updateSavedItems(saveItem);
+    }
+
+    @RequestMapping(value = "/rest/savedItems/removeSaved/{productId}", method = RequestMethod.PUT)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void removeSavedItem (@PathVariable(value = "productId") int productId) {
+        SavedItems savedItems = cartService.getSavedItemsByProductId(productId);
+        cartService.removeSavedCartItem(savedItems);
+    }
+
+    @RequestMapping(value = "/rest/cart/add/{productId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void addItem (@PathVariable(value ="productId") int productId, @AuthenticationPrincipal User activeUser) {
 
@@ -67,7 +97,7 @@ public class CartResources
         cartItemService.addCartItem(cartItem);
     }
 
-    @RequestMapping(value = "/remove/{productId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/rest/cart/remove/{productId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void removeItem (@PathVariable(value = "productId") int productId) {
         CartItem cartItem = cartItemService.getCartItemByProductId(productId);
@@ -75,7 +105,31 @@ public class CartResources
 
     }
 
-    @RequestMapping(value = "/{cartId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/rest/cart/plus/{productId}", method = RequestMethod.PUT)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void addToQuantity (@PathVariable(value = "productId") int productId) {
+        CartItem cartItem = cartItemService.getCartItemByProductId(productId);
+        Product product = productService.getProductById(productId);
+        cartItem.setQuantity(cartItem.getQuantity()+1);
+        cartItem.setTotalPrice(Math.round((product.getProductPrice()*cartItem.getQuantity())*100.0)/100.0);
+        cartItemService.addCartItem(cartItem);
+    }
+
+    @RequestMapping(value = "/rest/cart/minus/{productId}", method = RequestMethod.PUT)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void subtractFromQuantity (@PathVariable(value = "productId") int productId) {
+        CartItem cartItem = cartItemService.getCartItemByProductId(productId);
+        Product product = productService.getProductById(productId);
+        if (cartItem.getQuantity() > 1)
+        {
+            cartItem.setQuantity(cartItem.getQuantity() - 1);
+            cartItem.setTotalPrice(Math.round((product.getProductPrice()*cartItem.getQuantity())*100.0)/100.0);
+            cartItemService.addCartItem(cartItem);
+        }
+
+    }
+
+    @RequestMapping(value = "/rest/cart/{cartId}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void clearCart(@PathVariable(value = "cartId") int cartId) {
         Cart cart = cartService.getCartById(cartId);

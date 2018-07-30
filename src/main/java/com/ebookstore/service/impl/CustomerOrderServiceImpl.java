@@ -4,6 +4,7 @@ import com.ebookstore.dao.CustomerOrderDao;
 import com.ebookstore.model.Cart;
 import com.ebookstore.model.CartItem;
 import com.ebookstore.model.CustomerOrder;
+import com.ebookstore.model.Product;
 import com.ebookstore.service.CartService;
 import com.ebookstore.service.CustomerOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class CustomerOrderServiceImpl implements CustomerOrderService
     @Autowired
     private CartService cartService;
 
+    private List<Product> bestSellers;
+
     public void addCustomerOrder(CustomerOrder customerOrder) {
         customerOrderDao.addCustomerOrder(customerOrder);
     }
@@ -35,4 +38,6 @@ public class CustomerOrderServiceImpl implements CustomerOrderService
 
         return grandTotal;
     }
+
+
 }

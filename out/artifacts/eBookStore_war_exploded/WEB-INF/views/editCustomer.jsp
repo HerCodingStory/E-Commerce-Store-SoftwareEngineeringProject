@@ -29,15 +29,20 @@
             <form:input path="customerEmail" id="email" class="form-Control" value="${customer.customerEmail}"/>
         </div>
 
+        <div class="form-group">
+            <label for="nickname">Nickname</label>
+            <form:input path="nickname" id="nickname" class="form-Control" value="${customer.nickname}"/>
+        </div>
+
         <h3>Login Info: </h3>
 
         <div class="form-group">
-            <label for="username">Username</label>
+            <label for="username">Username(don't change)</label>
             <form:input path="username" id="username" class="form-Control" value="${customer.username}"/>
         </div>
 
         <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">Password(don't change)</label>
             <form:input path="password" id="password" class="form-Control" value="${customer.password}"/>
         </div>
 
@@ -75,7 +80,7 @@
 
         <div class="form-group">
             <label for="cardVerificationValue">CVV</label>
-            <form:input path="creditCard.cardVerificationValue" id="cardVerificationValue" class="form-Control" value="${customer.creditCard.cardVerificationValue}"/>
+            <form:password path="creditCard.cardVerificationValue" id="cardVerificationValue" class="form-Control" value="${customer.creditCard.cardVerificationValue}"/>
         </div>
 
         <h3>Shipping Address Info: </h3>
@@ -108,11 +113,6 @@
         <div class="form-group">
             <label for="shippingZip">Zipcode</label>
             <form:input path="shippingAddress.zipCode" id="shippingZip" class="form-Control" value="${customer.shippingAddress.zipCode}"/>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label" for="customerImage">Upload Picture</label>
-            <form:input id="customerImage" path="customerImage" type="file" class="form:input-large" />
         </div>
 
         <br><br>

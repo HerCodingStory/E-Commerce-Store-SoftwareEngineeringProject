@@ -14,6 +14,7 @@
             /WEB-INF/applicationContext.xml
         </param-value>
     </context-param>
+
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

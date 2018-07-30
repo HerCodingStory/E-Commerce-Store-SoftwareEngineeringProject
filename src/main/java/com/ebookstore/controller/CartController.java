@@ -24,8 +24,11 @@ public class CartController
     public String getCart(@AuthenticationPrincipal User activeUser){
         // get customer's username of the currently active user
         Customer customer = customerService.getCustomerByUsername(activeUser.getUsername());
+
+
         // get cardId of that customer
         int cartId = customer.getCart().getCartId();
+
 
         // redirect website to that customer's card
         return "redirect:/customer/cart/"+ cartId;

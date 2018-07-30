@@ -119,7 +119,7 @@ public class RegisterController
                 (customer.getShippingAddress().getZipCode() == null) || (customer.getShippingAddress().getState() == null) ||
                 (customer.getShippingAddress().getCountry() == null))
         {
-            model.addAttribute("shippingAddressMsg", " The Shipping Address must not be null");
+            model.addAttribute("shippingAddressMsg", "The Shipping Address must not be null");
             return "registerCustomerSuccess";
         }*/
 

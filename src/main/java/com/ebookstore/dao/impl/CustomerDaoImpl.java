@@ -5,11 +5,21 @@ import com.ebookstore.model.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import sun.plugin.liveconnect.SecurityContextHelper;
 
+import java.security.Principal;
+import java.security.Security;
 import java.util.List;
 
 @Repository
@@ -24,6 +34,10 @@ public class CustomerDaoImpl implements CustomerDao
 
         customer.getShippingAddress().setCustomer(customer);
         customer.getCreditCard().setCustomer(customer);
+        if (customer.getNickname().isEmpty())
+        {
+            customer.setNickname("Anonymous");
+        }
 
         session.saveOrUpdate(customer);
         session.saveOrUpdate(customer.getShippingAddress());
@@ -46,18 +60,6 @@ public class CustomerDaoImpl implements CustomerDao
         customer.setCart(newCart);
         session.saveOrUpdate(customer);
         session.saveOrUpdate(newCart);
-
-        Rating newRating = new Rating();
-        newRating.setCustomer(customer);
-        customer.setRating(newRating);
-        session.saveOrUpdate(customer);
-        session.saveOrUpdate(newRating);
-
-        Comment newComment = new Comment();
-        newComment.setCustomer(customer);
-        customer.setComment(newComment);
-        session.saveOrUpdate(customer);
-        session.saveOrUpdate(newComment);
 
         session.flush();
     }
@@ -93,7 +95,23 @@ public class CustomerDaoImpl implements CustomerDao
     public void editCustomer(Customer customer)
     {
         Session session = sessionFactory.getCurrentSession();
+
+        customer.getShippingAddress().setShippingAddressId(customer.getCustomerId());
+        customer.getCreditCard().setCreditCardId(customer.getCustomerId());
+        customer.getShippingAddress().setCustomer(customer);
+        customer.getCreditCard().setCustomer(customer);
+
         session.saveOrUpdate(customer);
+        session.saveOrUpdate(customer.getShippingAddress());
+        session.saveOrUpdate(customer.getCreditCard());
+
+        Cart newCart = new Cart();
+        newCart.setCartId(customer.getCustomerId());
+        newCart.setCustomer(customer);
+        customer.setCart(newCart);
+        session.saveOrUpdate(customer);
+        session.saveOrUpdate(newCart);
+
         session.flush();
     }
 
