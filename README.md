@@ -26,3 +26,6 @@ What you need:
 - h2
 - jQuery
 - Angular
+
+Deploy the website(working on this):
+- https://amazonjr.herokuapp.com/
